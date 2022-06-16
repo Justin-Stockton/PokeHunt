@@ -73,3 +73,11 @@ Setting Up and Starting a Local Server
 6. Run `npm install` in `/frontend` to install dependencies for frontend server.
 7. Run `npm start` in the `/frontend` directory
 8. The frontend server will be live on http://localhost:3000 by default
+
+## Bugs
+
+I love squishing bugs! If you find one, let me know by opening an issue [here](https://github.com/Justin-Stockton/PokeHunt/issues). Be sure to be clear in the description of the bug (i.e. what was input into the field that caused the bug, or where you were/ what you were doing at the time you spotted the bug). Screenshots or recordings greatly help to narrow down what the problem could be!
+
+## Created By
+
+[Justin Stockton](https://github.com/Justin-Stockton)
