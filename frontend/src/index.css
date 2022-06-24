@@ -1,1 +1,21 @@
 /* TODO Add site wide styles */
+* {
+  box-sizing: border-box;
+  background-color: #23272a;
+  font-family: Helvetica, sans-serif;
+  color: white;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
