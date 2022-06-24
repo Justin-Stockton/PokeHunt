@@ -57,7 +57,7 @@ router.get(
 // ==== - TODO READ ONE ==== //
 
 // ==== TODO UPDATE ==== //
-/***********************  WORKING ON THIS *********************************/
+
 router.put(
   "/:pokeId(\\d+)",
   validatePoke,
@@ -67,7 +67,16 @@ router.put(
     const pokemonId = parseInt(req.params.pokeId, 10);
     const userId = req.session.auth.userId;
 
-    const pokemon = await Pokemon.findAll({ where: { pokemonId, userId } });
+    const pokemon = await Pokemon.findOne({ where: { pokemonId, userId } });
+    pokemon.name = name;
+    pokemon.imgUrl = imgUrl;
+    pokemon.description = description;
+    await pokemon.save();
+
+    return res.json({
+      message: "update worked",
+      pokemon,
+    });
   })
 );
 
