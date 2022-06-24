@@ -55,6 +55,18 @@ router.get(
   })
 );
 // ==== - TODO READ ONE ==== //
+router.get(
+  "/:pokeId(\\d+)",
+  asyncHandler(async (req, res) => {
+    const pokemonId = parseInt(req.params.pokeId, 10);
+
+    const pokemon = await Pokemon.findOne({ where: { pokemonId } });
+    return res.json({
+      message: `A wild ${pokemon.name} appeared!!`,
+      pokemon,
+    });
+  })
+);
 
 // ==== TODO UPDATE ==== //
 
