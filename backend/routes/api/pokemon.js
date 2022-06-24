@@ -26,13 +26,14 @@ const validatePoke = [
 
 const router = express.Router();
 
-// TODO CREATE
+// ==== TODO CREATE ==== //
 
 router.post(
   "/",
   validatePoke,
   asyncHandler(async (req, res) => {
-    const { userId, name, imgUrl, description } = req.body;
+    const { name, imgUrl, description } = req.body;
+    const userId = req.session.auth.userId;
     const pokemon = await Pokemon.create({ userId, name, imgUrl, description });
 
     return res.json({
@@ -41,10 +42,48 @@ router.post(
   })
 );
 
-// TODO READ
+// ==== TODO READ ==== //
 
-// TODO UPDATE
+// ==== - TODO READ ALL ==== //
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const pokes = await Pokemon.findAll({ order: [["createdAt", "ASC"]] });
+    return res.json({
+      pokes,
+    });
+  })
+);
+// ==== - TODO READ ONE ==== //
 
-// TODO DELETE
+// ==== TODO UPDATE ==== //
+/***********************  WORKING ON THIS *********************************/
+router.put(
+  "/:pokeId(\\d+)",
+  validatePoke,
+  asyncHandler(async (req, res) => {
+    const { name, imgUrl, description } = req.body;
+
+    const pokemonId = parseInt(req.params.pokeId, 10);
+    const userId = req.session.auth.userId;
+
+    const pokemon = await Pokemon.findAll({ where: { pokemonId, userId } });
+  })
+);
+
+// ==== TODO DELETE ==== //
+router.post(
+  "/:pokeId(\\d+)",
+  asyncHandler(async (req, res) => {
+    const pokemonId = parseInt(req.params.pokeId, 10);
+    const userId = req.session.auth.userId;
+
+    const pokemon = await Pokemon.destroy({ where: { pokemonId, userId } });
+
+    return res.json({
+      pokemon,
+    });
+  })
+);
 
 module.exports = router;
