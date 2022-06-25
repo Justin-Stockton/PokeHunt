@@ -32,10 +32,14 @@ router.post(
   "/",
   validatePoke,
   asyncHandler(async (req, res) => {
-    const { name, imgUrl, description } = req.body;
-    const userId = req.session.auth.userId;
-    const pokemon = await Pokemon.create({ userId, name, imgUrl, description });
-
+    const { userId, name, imgUrl, description } = req.body;
+    const pokemon = await Pokemon.create({
+      userId,
+      name,
+      imgUrl,
+      description,
+    });
+    console.log(pokemon);
     return res.json({
       pokemon,
     });
@@ -48,9 +52,9 @@ router.post(
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const pokes = await Pokemon.findAll({ order: [["createdAt", "ASC"]] });
+    const pokemon = await Pokemon.findAll({ order: [["createdAt", "ASC"]] });
     return res.json({
-      pokes,
+      pokemon,
     });
   })
 );

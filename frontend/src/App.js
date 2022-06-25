@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
+import Pokemon from "./components/Pokemon";
+import AddPokemon from "./components/AddPokemon";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import "./index.css";
@@ -26,6 +28,8 @@ function App() {
           </Route>
         </Switch>
       )}
+      <Pokemon />
+      <AddPokemon />
     </>
   );
 }
