@@ -25,10 +25,10 @@ function Navigation({ isLoaded }) {
 
   return (
     <div className="big-div">
-      <div>{isLoaded && sessionLinks}</div>
       <NavLink exact to="/" id="home">
         Home
       </NavLink>
+      <div>{isLoaded && sessionLinks}</div>
     </div>
   );
 }

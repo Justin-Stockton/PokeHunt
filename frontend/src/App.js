@@ -26,10 +26,14 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route exact path="/">
+            <Pokemon />
+          </Route>
+          <Route path="/pokemon/add">
+            <AddPokemon />
+          </Route>
         </Switch>
       )}
-      <AddPokemon />
-      <Pokemon />
     </>
   );
 }

@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkCreatePokemon } from "../../store/pokemon";
 
 function AddPokemon() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [imgUrl, setImgUrl] = useState("");
   const [name, setName] = useState("");
@@ -27,7 +28,10 @@ function AddPokemon() {
       description,
     };
 
-    return dispatch(thunkCreatePokemon(data));
+    const poke = await dispatch(thunkCreatePokemon(data));
+    console.log(poke);
+    history.push(`/pokemon/${poke.pokemon.id}`);
+    return poke;
   };
 
   return (
