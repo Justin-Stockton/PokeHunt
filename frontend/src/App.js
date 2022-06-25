@@ -28,8 +28,8 @@ function App() {
           </Route>
         </Switch>
       )}
-      <Pokemon />
       <AddPokemon />
+      <Pokemon />
     </>
   );
 }

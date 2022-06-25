@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  width: 50%;
+  margin-left: 10%;
+  padding-top: 3%;
+  border-right: solid #a197bd 1px;
+  border-bottom: solid #a197bd 1px;
+}
+.poke-text {
+  padding-left: 1rem;
+}
+.poke-name {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
