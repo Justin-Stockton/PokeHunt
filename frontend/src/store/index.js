@@ -5,7 +5,7 @@ import pokeReducer from "./pokemon";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  pokeReducer,
+  pokemon: pokeReducer,
 });
 
 let enhancer;

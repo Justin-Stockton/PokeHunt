@@ -1,16 +1,12 @@
 const router = require("express").Router();
 const sessionRouter = require("./session.js");
 const usersRouter = require("./users.js");
-const pokeRouter = require("./pokemon");
+const pokemonRouter = require("./pokemon.js");
 
 router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);
 
-router.use("/pokemon", pokeRouter);
-
-router.post("/test", (req, res) => {
-  res.json({ requestBody: req.body });
-});
+router.use("/pokemon", pokemonRouter);
 
 module.exports = router;

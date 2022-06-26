@@ -32,10 +32,14 @@ router.post(
   "/",
   validatePoke,
   asyncHandler(async (req, res) => {
-    const { name, imgUrl, description } = req.body;
-    const userId = req.session.auth.userId;
-    const pokemon = await Pokemon.create({ userId, name, imgUrl, description });
-
+    const { userId, name, imgUrl, description } = req.body;
+    const pokemon = await Pokemon.create({
+      userId,
+      name,
+      imgUrl,
+      description,
+    });
+    // console.log(pokemon);
     return res.json({
       pokemon,
     });
@@ -45,16 +49,18 @@ router.post(
 // ==== TODO READ ==== //
 
 // ==== - TODO READ ALL ==== //
+
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const pokes = await Pokemon.findAll({ order: [["createdAt", "ASC"]] });
+    const pokemon = await Pokemon.findAll({ order: [["createdAt", "ASC"]] });
     return res.json({
-      pokes,
+      pokemon,
     });
   })
 );
 // ==== - TODO READ ONE ==== //
+
 router.get(
   "/:pokeId(\\d+)",
   asyncHandler(async (req, res) => {
@@ -72,14 +78,13 @@ router.get(
 
 router.put(
   "/:pokeId(\\d+)",
-  validatePoke,
+  // validatePoke,
   asyncHandler(async (req, res) => {
-    const { name, imgUrl, description } = req.body;
+    const { userId, pokemonId, name, imgUrl, description } = req.body;
+    // console.log(userId);
 
-    const pokemonId = parseInt(req.params.pokeId, 10);
-    const userId = req.session.auth.userId;
+    const pokemon = await Pokemon.findByPk(pokemonId);
 
-    const pokemon = await Pokemon.findOne({ where: { pokemonId, userId } });
     pokemon.name = name;
     pokemon.imgUrl = imgUrl;
     pokemon.description = description;
@@ -93,6 +98,7 @@ router.put(
 );
 //
 // ==== TODO DELETE ==== //
+
 router.post(
   "/:pokeId(\\d+)",
   asyncHandler(async (req, res) => {
