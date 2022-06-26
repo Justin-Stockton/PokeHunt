@@ -5,6 +5,7 @@ import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import Pokemon from "./components/Pokemon";
 import AddPokemon from "./components/AddPokemon";
+import SinglePokePage from "./components/SinglePokePage/SinglePokePage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import "./index.css";
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route path="/pokemon/add">
             <AddPokemon />
+          </Route>
+          <Route path="/pokemon/:pokemonId">
+            <SinglePokePage />
           </Route>
         </Switch>
       )}

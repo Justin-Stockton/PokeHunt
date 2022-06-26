@@ -7,13 +7,15 @@ import { NavLink } from "react-router-dom";
 
 function Pokemon() {
   const dispatch = useDispatch();
-  const pokemonArr = useSelector((state) => {
-    return Object.values(state.pokemon);
-  });
 
   useEffect(() => {
     dispatch(thunkGetAllPokemons());
   }, [dispatch]);
+
+  const pokemonArr = useSelector((state) => {
+    return Object.values(state.pokemon);
+  });
+
   if (!pokemonArr) {
     return null;
   }
@@ -27,11 +29,11 @@ function Pokemon() {
                 <NavLink to={`/pokemon/${pokemon.id}`}>
                   <img
                     src={`${pokemon.imgUrl}`}
+                    alt=""
                     style={{ height: "7rem", width: "7rem" }}
                   />
                 </NavLink>
               </div>
-
               <div className="poke-text">
                 <div key={pokemon.name} className="poke-name">
                   {pokemon.name}

@@ -6,6 +6,8 @@ import { csrfFetch } from "./csrf";
 const CREATE_POKEMON = "pokemon/CREATE_POKEMON";
 // - READ
 const GET_POKEMON = "pokemon/GET_POKEMON";
+
+const GET_ONE_POKEMON = "pokemon/GET_ONE_POKEMON";
 // - UPDATE
 const UPDATE_POKEMON = "pokemon/UPDATE_POKEMON";
 // - DELETE
@@ -19,11 +21,14 @@ export const actionCreatePokemon = (pokeData) => {
   };
 };
 export const actionGetPokemons = (pokemon) => {
-  console.log("\n\n*************");
-  console.log(pokemon);
-  console.log("\n\n*************");
   return {
     type: GET_POKEMON,
+    pokemon,
+  };
+};
+export const actionGetOnePokemon = (pokemon) => {
+  return {
+    type: GET_ONE_POKEMON,
     pokemon,
   };
 };
@@ -42,6 +47,7 @@ export const actionDeletePokemon = (pokemonId) => {
 
 //todo Thunks
 
+// READ ALL
 export const thunkGetAllPokemons = () => async (dispatch) => {
   const response = await fetch("/api/pokemon", {
     method: "GET",
@@ -58,7 +64,22 @@ export const thunkGetAllPokemons = () => async (dispatch) => {
 
   return await response.json();
 };
+// READ ONE
+export const thunkGetOnePokemon = (poke) => async (dispatch) => {
+  const response = await fetch(`/api/${poke.id}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(actionGetOnePokemon(data));
+    return response;
+  }
+};
 
+// CREATE
 export const thunkCreatePokemon = (poke) => async (dispatch) => {
   const response = await csrfFetch(`/api/pokemon`, {
     method: "POST",
@@ -77,12 +98,12 @@ export const thunkCreatePokemon = (poke) => async (dispatch) => {
 //todo Reducer
 const pokeReducer = (state = {}, action) => {
   let newState = { ...state };
-  // console.log(state);
-  console.log("\n\n*************");
-  console.log(action);
-  console.log("*************\n\n");
 
   switch (action.type) {
+    // case GET_ONE_POKEMON:
+    //   action.pokemon.pokemon.forEach((pokemon) =>{
+    //     newState[pokemon.id] = pokemon
+    //   })
     case GET_POKEMON:
       action.pokemon.pokemon.forEach((pokemon) => {
         newState[pokemon.id] = pokemon;
