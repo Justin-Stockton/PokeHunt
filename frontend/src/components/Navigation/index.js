@@ -14,10 +14,12 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <div>
-          <NavLink to="/login">Log In</NavLink>
-        </div>
-        <div>
-          <NavLink to="/signup">Sign Up</NavLink>
+          <div>
+            <NavLink to="/login">Log In</NavLink>
+          </div>
+          <div>
+            <NavLink to="/signup">Sign Up</NavLink>
+          </div>
         </div>
       </>
     );
@@ -27,6 +29,9 @@ function Navigation({ isLoaded }) {
     <div className="big-div">
       <NavLink exact to="/" id="home">
         Home
+      </NavLink>
+      <NavLink to="/pokemon/add" id="home">
+        Add Pokemon
       </NavLink>
       <div>{isLoaded && sessionLinks}</div>
     </div>

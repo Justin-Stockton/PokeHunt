@@ -14,10 +14,10 @@ const UPDATE_POKEMON = "pokemon/UPDATE_POKEMON";
 const DELETE_POKEMON = "pokemon/DELETE_POKEMON";
 
 //todo action creator
-export const actionCreatePokemon = (pokeData) => {
+export const actionCreatePokemon = (pokemon) => {
   return {
     type: CREATE_POKEMON,
-    pokeData,
+    pokemon,
   };
 };
 export const actionGetPokemons = (pokemon) => {
@@ -47,6 +47,21 @@ export const actionDeletePokemon = (pokemonId) => {
 
 //todo Thunks
 
+// CREATE
+export const thunkCreatePokemon = (poke) => async (dispatch) => {
+  const response = await csrfFetch(`/api/pokemon`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(poke),
+  });
+  if (response.ok) {
+    const pokemon = await response.json();
+    dispatch(actionCreatePokemon(pokemon.pokemon));
+    return pokemon;
+  }
+};
 // READ ALL
 export const thunkGetAllPokemons = () => async (dispatch) => {
   const response = await fetch("/api/pokemon", {
@@ -64,46 +79,26 @@ export const thunkGetAllPokemons = () => async (dispatch) => {
 
   return await response.json();
 };
-// READ ONE
-export const thunkGetOnePokemon = (poke) => async (dispatch) => {
-  const response = await fetch(`/api/${poke.id}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(actionGetOnePokemon(data));
-    return response;
-  }
-};
 
-// CREATE
-export const thunkCreatePokemon = (poke) => async (dispatch) => {
-  const response = await csrfFetch(`/api/pokemon`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+//UPDATE
+
+export const thunkUpdatePokemon = (poke) => async (dispatch) => {
+  const response = await csrfFetch(`/api/pokemon/${poke.pokemonId}`, {
+    method: "PUT",
     body: JSON.stringify(poke),
   });
   if (response.ok) {
-    const pokemon = await response.json();
-    // console.log(pokemon);
-    dispatch(actionCreatePokemon(pokemon.pokemon));
-    return pokemon;
+    const data = await response.json();
+    dispatch(actionUpdatePokemon(data));
+    return data;
   }
 };
 //todo Reducer
 const pokeReducer = (state = {}, action) => {
+  console.log(action);
   let newState = { ...state };
 
   switch (action.type) {
-    // case GET_ONE_POKEMON:
-    //   action.pokemon.pokemon.forEach((pokemon) =>{
-    //     newState[pokemon.id] = pokemon
-    //   })
     case GET_POKEMON:
       action.pokemon.pokemon.forEach((pokemon) => {
         newState[pokemon.id] = pokemon;
@@ -112,18 +107,28 @@ const pokeReducer = (state = {}, action) => {
 
     case CREATE_POKEMON:
       newState = { ...state };
-      newState[action.pokeData.name] = {
-        userId: action.pokeData.userId,
-        name: action.pokeData.name,
-        imgUrl: action.pokeData.imgUrl,
-        description: action.pokeData.description,
+      newState[action.pokemon.id] = {
+        userId: action.pokemon.userId,
+        name: action.pokemon.name,
+        imgUrl: action.pokemon.imgUrl,
+        description: action.pokemon.description,
       };
 
       return newState;
 
     case UPDATE_POKEMON:
       newState = { ...state };
-      newState.user = null;
+      console.clear();
+      console.log("*****************");
+      console.log(newState);
+      console.log("*****************");
+      console.log();
+      console.log("*****************");
+      newState[action.pokemon.pokemon.id] = {
+        description: action.pokemon.pokemon.description,
+        name: action.pokemon.pokemon.name,
+        imgUrl: action.pokemon.pokemon.imgUrl,
+      };
       return newState;
 
     case DELETE_POKEMON:

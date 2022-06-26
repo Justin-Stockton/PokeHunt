@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkCreatePokemon } from "../../store/pokemon";
@@ -11,7 +11,7 @@ function AddPokemon() {
   const [imgUrl, setImgUrl] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors] = useState([]);
 
   const sessionUser = useSelector((state) => state.session.user);
   let userId;
@@ -36,7 +36,7 @@ function AddPokemon() {
 
   return (
     <div>
-      <h1>Hello from the form!</h1>
+      <h1>Lets see that Pokemon!!</h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map((error, idx) => (
