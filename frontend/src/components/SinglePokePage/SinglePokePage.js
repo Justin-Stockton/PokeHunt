@@ -21,6 +21,7 @@ function SinglePokePage() {
   const pokeArr = useSelector((state) => {
     return state.pokemon[pokeId];
   });
+  console.log(pokeArr.description);
   const userObj = useSelector((state) => {
     return state.session.user;
   });

@@ -48,8 +48,6 @@ router.post(
 
 // ==== TODO READ ==== //
 
-// ==== - TODO READ ALL ==== //
-
 router.get(
   "/",
   asyncHandler(async (req, res) => {
@@ -59,6 +57,7 @@ router.get(
     });
   })
 );
+
 // ==== - TODO READ ONE ==== //
 
 router.get(
@@ -96,7 +95,7 @@ router.put(
     });
   })
 );
-//
+
 // ==== TODO DELETE ==== //
 
 router.post(
