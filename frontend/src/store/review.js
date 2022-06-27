@@ -63,14 +63,15 @@ const actionDeleteReview = (reviewId) => {
 // ==== CREATE ==== //
 
 export const thunkCreateReview = (review) => async (dispatch) => {
-  const response = await csrfFetch(`/api/review/${review.pokemonId}`{,
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify(review),});
+  const response = await csrfFetch(`/api/review/${review.pokemonId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(review),
+  });
 
-  if(response.ok){
+  if (response.ok) {
     const review = await response.json();
     dispatch(actionCreateReview(review.review));
     return review;
@@ -79,14 +80,43 @@ export const thunkCreateReview = (review) => async (dispatch) => {
 
 // ==== READ ==== //
 
+export const thunkGetReviews = (pokemonId) => async (dispatch) => {
+  const response = await fetch(`/api/review/${pokemonId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(actionGetReview(data));
+    return response;
+  }
+
+  return await response.json;
+};
+
 // ==== UPDATE ==== //
 
 // ==== DELETE ==== //
 
-// ==== todo Define the Reducer==== //
+export const thunkDeleteReview = (pokemonId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/review/${pokemonId}`, {
+    method: "POST",
+    pokemonId,
+  });
 
-const reviewReducer = (state = {}, action) => {
-  //
+  if (response.ok) {
+    dispatch(actionDeleteReview(pokemonId));
+  }
+};
+
+// ==== todo Define the Reducer==== //
+// (state = {}, action)
+const reviewReducer = () => {
+  console.log("LOL THIS ISNT A THING YET");
+  return;
 };
 
 export default reviewReducer;
