@@ -1,4 +1,4 @@
-// import { csrfFetch } from "./csrf";
+import { csrfFetch } from "./csrf";
 
 // ==== todo Define the Types ==== //
 
@@ -62,6 +62,21 @@ const actionDeleteReview = (reviewId) => {
 
 // ==== CREATE ==== //
 
+export const thunkCreateReview = (review) => async (dispatch) => {
+  const response = await csrfFetch(`/api/review/${review.pokemonId}`{,
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(review),});
+
+  if(response.ok){
+    const review = await response.json();
+    dispatch(actionCreateReview(review.review));
+    return review;
+  }
+};
+
 // ==== READ ==== //
 
 // ==== UPDATE ==== //
@@ -69,3 +84,9 @@ const actionDeleteReview = (reviewId) => {
 // ==== DELETE ==== //
 
 // ==== todo Define the Reducer==== //
+
+const reviewReducer = (state = {}, action) => {
+  //
+};
+
+export default reviewReducer;
