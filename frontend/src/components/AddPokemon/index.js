@@ -55,13 +55,13 @@ function AddPokemon() {
           value={imgUrl}
           onChange={(e) => setImgUrl(e.target.value)}
         />
-        <input
+        <tectarea
           type="text"
           placeholder="Desciption"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
-        ></input>
+        ></tectarea>
         <button type="submit">Submit your new Pokemon</button>
       </form>
     </div>

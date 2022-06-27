@@ -14,6 +14,7 @@ const router = express.Router();
 // ==== TODO ==== //
 
 // ==== CREATE ==== //
+
 router.post(
   "/:pokeId(\\d+)",
   //   validateReview,
@@ -32,6 +33,7 @@ router.post(
 );
 
 // ==== READ ==== //
+
 router.get(
   "/:pokeId(\\d+)",
   asyncHandler(async (req, res) => {
@@ -44,24 +46,24 @@ router.get(
   })
 );
 
-// ==== UPDATE ==== //
+// // ==== UPDATE ==== //
 
-router.put(
-  "/:reviewId(\\d+)",
-  //   validateReview,
-  asyncHandler(async (req, res) => {
-    //
-    const { review } = req.body;
-    const reviewId = parseInt(req.params.reviewId, 10);
-    const _review = await Review.findByPk(reviewId);
-    _review.review = review;
-    await _review.save();
+// router.put(
+//   "/:reviewId(\\d+)",
+//   //   validateReview,
+//   asyncHandler(async (req, res) => {
+//     //
+//     const { review } = req.body;
+//     const reviewId = parseInt(req.params.reviewId, 10);
+//     const _review = await Review.findByPk(reviewId);
+//     _review.review = review;
+//     await _review.save();
 
-    return res.json({
-      _review,
-    });
-  })
-);
+//     return res.json({
+//       _review,
+//     });
+//   })
+// );
 
 // ==== DELETE ==== //
 

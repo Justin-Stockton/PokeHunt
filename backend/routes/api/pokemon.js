@@ -39,7 +39,7 @@ router.post(
       imgUrl,
       description,
     });
-    // console.log(pokemon);
+
     return res.json({
       pokemon,
     });
@@ -77,10 +77,9 @@ router.get(
 
 router.put(
   "/:pokeId(\\d+)",
-  // validatePoke,
+  validatePoke,
   asyncHandler(async (req, res) => {
     const { pokemonId, name, imgUrl, description } = req.body;
-    // console.log(userId);
 
     const pokemon = await Pokemon.findByPk(pokemonId);
 
