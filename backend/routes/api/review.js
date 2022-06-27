@@ -50,9 +50,31 @@ router.put(
   "/:reviewId(\\d+)",
   asyncHandler(async (req, res) => {
     //
+    const { review } = req.body;
+    const reviewId = parseInt(req.params.reviewId, 10);
+    const _review = await Review.findByPk(reviewId);
+    _review.review = review;
+    await _review.save();
+
+    return res.json({
+      _review,
+    });
   })
 );
 
 // ==== DELETE ==== //
+
+router.post(
+  "/:reviewId(\\d+)",
+  asyncHandler(async (req, res) => {
+    const reviewId = parseInt(req.params.reviewId, 10);
+
+    const review = await Review.destroy({ where: { id: reviewId } });
+
+    return res.json({
+      review,
+    });
+  })
+);
 
 module.exports = router;
