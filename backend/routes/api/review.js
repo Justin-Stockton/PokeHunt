@@ -48,6 +48,7 @@ router.get(
 
 router.put(
   "/:reviewId(\\d+)",
+  //   validateReview,
   asyncHandler(async (req, res) => {
     //
     const { review } = req.body;
