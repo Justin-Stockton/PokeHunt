@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Redirect } from "react-router-dom";
 import { thunkGetAllPokemons, thunkDeletePokemon } from "../../store/pokemon";
 import EditForm from "../EditForm";
 
@@ -15,8 +15,9 @@ function SinglePokePage() {
   }, [dispatch]);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     await dispatch(thunkDeletePokemon(pokeId));
-    history.push("/");
+    return <Redirect to="/" />;
   };
   const pokeArr = useSelector((state) => {
     return state.pokemon[pokeId];
