@@ -29,7 +29,6 @@ function AddPokemon() {
     };
 
     const poke = await dispatch(thunkCreatePokemon(data));
-    console.log(poke);
     history.push(`/pokemon/${poke.pokemon.id}`);
     return poke;
   };

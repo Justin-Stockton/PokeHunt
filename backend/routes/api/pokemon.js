@@ -80,7 +80,7 @@ router.put(
   "/:pokeId(\\d+)",
   // validatePoke,
   asyncHandler(async (req, res) => {
-    const { userId, pokemonId, name, imgUrl, description } = req.body;
+    const { pokemonId, name, imgUrl, description } = req.body;
     // console.log(userId);
 
     const pokemon = await Pokemon.findByPk(pokemonId);
@@ -103,9 +103,8 @@ router.post(
   "/:pokeId(\\d+)",
   asyncHandler(async (req, res) => {
     const pokemonId = parseInt(req.params.pokeId, 10);
-    const userId = req.session.auth.userId;
 
-    const pokemon = await Pokemon.destroy({ where: { pokemonId, userId } });
+    const pokemon = await Pokemon.destroy({ where: { id: pokemonId } });
 
     return res.json({
       pokemon,
