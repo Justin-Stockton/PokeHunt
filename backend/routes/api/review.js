@@ -36,7 +36,7 @@ router.get(
   "/:pokeId(\\d+)",
   asyncHandler(async (req, res) => {
     const pokemonId = parseInt(req.params.pokeId, 10);
-    const pokemonReviews = await Reviews.findAll({ where: { pokemonId } });
+    const pokemonReviews = await Review.findAll({ where: { pokemonId } });
 
     return res.json({
       pokemonReviews,
