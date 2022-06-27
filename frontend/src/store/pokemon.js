@@ -2,43 +2,47 @@ import { csrfFetch } from "./csrf";
 
 //todo define types
 // - CRUD
+
 // - CREATE
+
 const CREATE_POKEMON = "pokemon/CREATE_POKEMON";
+
 // - READ
+
 const GET_POKEMON = "pokemon/GET_POKEMON";
 
-const GET_ONE_POKEMON = "pokemon/GET_ONE_POKEMON";
 // - UPDATE
+
 const UPDATE_POKEMON = "pokemon/UPDATE_POKEMON";
+
 // - DELETE
+
 const DELETE_POKEMON = "pokemon/DELETE_POKEMON";
 
 //todo action creator
-export const actionCreatePokemon = (pokemon) => {
+
+const actionCreatePokemon = (pokemon) => {
   return {
     type: CREATE_POKEMON,
     pokemon,
   };
 };
-export const actionGetPokemons = (pokemon) => {
+
+const actionGetPokemons = (pokemon) => {
   return {
     type: GET_POKEMON,
     pokemon,
   };
 };
-export const actionGetOnePokemon = (pokemon) => {
-  return {
-    type: GET_ONE_POKEMON,
-    pokemon,
-  };
-};
-export const actionUpdatePokemon = (pokemon) => {
+
+const actionUpdatePokemon = (pokemon) => {
   return {
     type: UPDATE_POKEMON,
     pokemon,
   };
 };
-export const actionDeletePokemon = (pokemonId) => {
+
+const actionDeletePokemon = (pokemonId) => {
   return {
     type: DELETE_POKEMON,
     pokemonId,
@@ -48,6 +52,7 @@ export const actionDeletePokemon = (pokemonId) => {
 //todo Thunks
 
 // CREATE
+
 export const thunkCreatePokemon = (poke) => async (dispatch) => {
   const response = await csrfFetch(`/api/pokemon`, {
     method: "POST",
@@ -62,7 +67,9 @@ export const thunkCreatePokemon = (poke) => async (dispatch) => {
     return pokemon;
   }
 };
-// READ ALL
+
+// READ
+
 export const thunkGetAllPokemons = () => async (dispatch) => {
   const response = await fetch("/api/pokemon", {
     method: "GET",
@@ -93,7 +100,22 @@ export const thunkUpdatePokemon = (poke) => async (dispatch) => {
     return data;
   }
 };
+
+//DELETE
+
+export const thunkDeletePokemon = (pokemonId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/pokemon/${pokemonId}`, {
+    method: "POST",
+    pokemonId,
+  });
+
+  if (response.ok) {
+    dispatch(actionDeletePokemon(pokemonId));
+  }
+};
+
 //todo Reducer
+
 const pokeReducer = (state = {}, action) => {
   console.log(action);
   let newState = { ...state };
@@ -118,12 +140,6 @@ const pokeReducer = (state = {}, action) => {
 
     case UPDATE_POKEMON:
       newState = { ...state };
-      console.clear();
-      console.log("*****************");
-      console.log(newState);
-      console.log("*****************");
-      console.log();
-      console.log("*****************");
       newState[action.pokemon.pokemon.id] = {
         description: action.pokemon.pokemon.description,
         name: action.pokemon.pokemon.name,

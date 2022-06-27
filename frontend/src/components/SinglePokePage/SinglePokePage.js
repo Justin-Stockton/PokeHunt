@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { thunkGetAllPokemons, deletePokemon } from "../../store/pokemon";
+import { useParams, useHistory } from "react-router-dom";
+import { thunkGetAllPokemons, thunkDeletePokemon } from "../../store/pokemon";
 import EditForm from "../EditForm";
 
 function SinglePokePage() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const poke = useParams();
   const pokeId = poke.pokemonId;
@@ -13,6 +14,10 @@ function SinglePokePage() {
     dispatch(thunkGetAllPokemons());
   }, [dispatch]);
 
+  const handleSubmit = async (e) => {
+    await dispatch(thunkDeletePokemon(pokeId));
+    history.push("/");
+  };
   const pokeArr = useSelector((state) => {
     return state.pokemon[pokeId];
   });
@@ -31,9 +36,11 @@ function SinglePokePage() {
           <img src={`${pokeArr.imgUrl}`} alt="pokemon" />
         </div>
         <div>{pokeArr.description}</div>
-        <div>
-          <button>test button</button>
-        </div>
+        {userObj.id === pokeArr.userId ? (
+          <div>
+            <button onClick={handleSubmit}>test button</button>
+          </div>
+        ) : null}
       </div>
       <br />
       <br />
