@@ -14,15 +14,15 @@ function SinglePokePage() {
     dispatch(thunkGetAllPokemons());
   }, [dispatch]);
 
-  const handleSubmit = async (e) => {
+  const _handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(thunkDeletePokemon(pokeId));
-    return <Redirect to="/" />;
+    history.push("/");
   };
   const pokeArr = useSelector((state) => {
     return state.pokemon[pokeId];
   });
-  console.log(pokeArr.description);
+
   const userObj = useSelector((state) => {
     return state.session.user;
   });
@@ -39,9 +39,11 @@ function SinglePokePage() {
         </div>
         <div>{pokeArr.description}</div>
         {userObj.id === pokeArr.userId ? (
-          <div>
-            <button onClick={handleSubmit}>test button</button>
-          </div>
+          <form onSubmit={_handleSubmit}>
+            <div>
+              <button type="submit">DELETE</button>
+            </div>
+          </form>
         ) : null}
       </div>
       <br />
