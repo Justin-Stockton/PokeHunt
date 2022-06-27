@@ -35,12 +35,23 @@ router.post(
 router.get(
   "/:pokeId(\\d+)",
   asyncHandler(async (req, res) => {
-    const pokeId = parseInt(req.params.pokeId, 10);
-    //
+    const pokemonId = parseInt(req.params.pokeId, 10);
+    const pokemonReviews = await Reviews.findAll({ where: { pokemonId } });
+
+    return res.json({
+      pokemonReviews,
+    });
   })
 );
 
 // ==== UPDATE ==== //
+
+router.put(
+  "/:reviewId(\\d+)",
+  asyncHandler(async (req, res) => {
+    //
+  })
+);
 
 // ==== DELETE ==== //
 
