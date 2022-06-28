@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
@@ -8,8 +8,8 @@ import * as sessionActions from "../../store/session";
 function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [credential] = useState("Ash Ketchum");
-  const [password] = useState("password");
+  const credential = "Ash Ketchum";
+  const password = "password";
 
   const handleSubmit = (e) => {
     e.preventDefault();
