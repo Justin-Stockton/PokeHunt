@@ -39,7 +39,7 @@ router.post(
       imgUrl,
       description,
     });
-    // console.log(pokemon);
+
     return res.json({
       pokemon,
     });
@@ -47,8 +47,6 @@ router.post(
 );
 
 // ==== TODO READ ==== //
-
-// ==== - TODO READ ALL ==== //
 
 router.get(
   "/",
@@ -59,6 +57,7 @@ router.get(
     });
   })
 );
+
 // ==== - TODO READ ONE ==== //
 
 router.get(
@@ -78,10 +77,9 @@ router.get(
 
 router.put(
   "/:pokeId(\\d+)",
-  // validatePoke,
+  validatePoke,
   asyncHandler(async (req, res) => {
     const { pokemonId, name, imgUrl, description } = req.body;
-    // console.log(userId);
 
     const pokemon = await Pokemon.findByPk(pokemonId);
 
@@ -96,7 +94,7 @@ router.put(
     });
   })
 );
-//
+
 // ==== TODO DELETE ==== //
 
 router.post(

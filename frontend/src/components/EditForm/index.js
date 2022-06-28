@@ -63,13 +63,13 @@ function EditForm() {
           value={imgUrl}
           onChange={(e) => setImgUrl(e.target.value)}
         />
-        <input
+        <textarea
           type="text"
           placeholder="Desciption"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
-        ></input>
+        ></textarea>
         <button type="submit">Submit changes</button>
       </form>
     </>

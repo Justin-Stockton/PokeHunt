@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { thunkGetAllPokemons, thunkDeletePokemon } from "../../store/pokemon";
 import EditForm from "../EditForm";
+import Comments from "../Comments";
 
 function SinglePokePage() {
   const history = useHistory();
@@ -14,13 +15,15 @@ function SinglePokePage() {
     dispatch(thunkGetAllPokemons());
   }, [dispatch]);
 
-  const handleSubmit = async (e) => {
+  const _handleSubmit = async (e) => {
+    e.preventDefault();
     await dispatch(thunkDeletePokemon(pokeId));
     history.push("/");
   };
   const pokeArr = useSelector((state) => {
     return state.pokemon[pokeId];
   });
+
   const userObj = useSelector((state) => {
     return state.session.user;
   });
@@ -37,9 +40,11 @@ function SinglePokePage() {
         </div>
         <div>{pokeArr.description}</div>
         {userObj.id === pokeArr.userId ? (
-          <div>
-            <button onClick={handleSubmit}>test button</button>
-          </div>
+          <form onSubmit={_handleSubmit}>
+            <div>
+              <button type="submit">DELETE YOUR POKEMON</button>
+            </div>
+          </form>
         ) : null}
       </div>
       <br />
@@ -47,6 +52,7 @@ function SinglePokePage() {
       <br />
       <br />
       {userObj.id === pokeArr.userId ? <EditForm /> : null}
+      <Comments />
     </>
   );
 }

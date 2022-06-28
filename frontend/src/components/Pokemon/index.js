@@ -21,9 +21,9 @@ function Pokemon() {
   }
   return (
     <>
-      {pokemonArr.map((pokemon) => {
+      {pokemonArr.map((pokemon, i) => {
         return (
-          <>
+          <div key={i}>
             <div className="container">
               <div className="poke-img">
                 <NavLink to={`/pokemon/${pokemon.id}`}>
@@ -35,13 +35,13 @@ function Pokemon() {
                 </NavLink>
               </div>
               <div className="poke-text">
-                <div key={pokemon.name} className="poke-name">
+                <div key={pokemon.id} className="poke-name">
                   {pokemon.name}
                 </div>
                 <div className="poke-description">{pokemon.description}</div>
               </div>
             </div>
-          </>
+          </div>
         );
       })}
     </>

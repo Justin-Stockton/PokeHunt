@@ -117,7 +117,6 @@ export const thunkDeletePokemon = (pokemonId) => async (dispatch) => {
 //todo Reducer
 
 const pokeReducer = (state = {}, action) => {
-  console.log(action);
   let newState = { ...state };
 
   switch (action.type) {
@@ -141,9 +140,13 @@ const pokeReducer = (state = {}, action) => {
     case UPDATE_POKEMON:
       newState = { ...state };
       newState[action.pokemon.pokemon.id] = {
-        description: action.pokemon.pokemon.description,
+        id: action.pokemon.pokemon.id,
+        userId: action.pokemon.pokemon.userId,
         name: action.pokemon.pokemon.name,
         imgUrl: action.pokemon.pokemon.imgUrl,
+        description: action.pokemon.pokemon.description,
+        createdAt: action.pokemon.pokemon.createdAt,
+        updatedAt: action.pokemon.pokemon.updateAt,
       };
       return newState;
 

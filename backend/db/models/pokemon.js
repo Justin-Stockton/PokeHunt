@@ -13,7 +13,11 @@ module.exports = (sequelize, DataTypes) => {
   Pokemon.associate = function (models) {
     // associations can be defined here
     Pokemon.belongsTo(models.User, { foreignKey: "userId" });
-    Pokemon.hasMany(models.Review, { foreignKey: "pokemonId" });
+    Pokemon.hasMany(models.Review, {
+      foreignKey: "pokemonId",
+      onDelete: "CASCADE",
+      hooks: true,
+    });
   };
   return Pokemon;
 };
