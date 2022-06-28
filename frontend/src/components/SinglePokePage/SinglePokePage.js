@@ -30,6 +30,22 @@ function SinglePokePage() {
   if (!pokeArr) {
     return null;
   }
+  if (!userObj) {
+    return (
+      <>
+        <h1>
+          It looks like you need to talk to the professor before proceeding!
+        </h1>
+        <div>
+          I think I saw him over by the Log in button.... or was it the Sign up?
+          I don't really remember anymore!
+        </div>
+        <div>
+          To skip ahead to being a pokemon master click the Demo user button!!
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <div>Thank You For Looking At {pokeArr.name}!</div>
