@@ -63,9 +63,6 @@ const actionDeleteReview = (reviewId) => {
 // ==== CREATE ==== //
 
 export const thunkCreateReview = (review) => async (dispatch) => {
-  console.log("\n\n********");
-  console.log(JSON.stringify(review));
-  console.log("********\n\n");
   const response = await csrfFetch(`/api/review`, {
     method: "POST",
     headers: {
@@ -76,7 +73,7 @@ export const thunkCreateReview = (review) => async (dispatch) => {
 
   if (response.ok) {
     const review = await response.json();
-    dispatch(actionCreateReview(review.review));
+    dispatch(actionCreateReview(review));
     return review;
   }
 };
@@ -119,12 +116,27 @@ export const thunkDeleteReview = (pokemonId) => async (dispatch) => {
 // (state = {}, action)
 const reviewReducer = (state = {}, action) => {
   let newState = { ...state };
-  console.log(action);
   switch (action.type) {
     case GET_REVIEW:
       action.pokemonId.pokemonReviews.forEach((review) => {
         newState[review.id] = review;
       });
+      return newState;
+
+    case CREATE_REVIEW:
+      console.log(action);
+      newState[action.review.createdReview.id] = {
+        id: action.review.createdReview.id,
+        userId: action.review.createdReview.userId,
+        pokemonId: action.review.createdReview.pokemonId,
+        review: action.review.createdReview.review,
+        createdAt: action.review.createdReview.createdAt,
+        updatedAt: action.review.createdReview.updatedAt,
+      };
+      return newState;
+
+    case DELETE_REVIEW:
+      delete newState[action.reviewId];
       return newState;
 
     default:

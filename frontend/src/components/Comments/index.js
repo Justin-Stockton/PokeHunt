@@ -6,6 +6,7 @@ import {
 } from "../../store/review";
 import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 function Comments() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -19,12 +20,6 @@ function Comments() {
     dispatch(thunkGetReviews(pokeId));
   }, [dispatch, pokeId]);
 
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    await dispatch(thunkDeleteReview(8));
-    history.push(`/pokemon/${pokeId}`);
-  };
-
   const reviewArr = useSelector((state) => {
     return Object.values(state.review);
   });
@@ -35,15 +30,18 @@ function Comments() {
 
   const createReview = async (e) => {
     e.preventDefault();
-
     const data = {
       userId: userObj.id,
       pokemonId,
       review,
     };
-    //
-    console.log(data);
+    setReview("");
     dispatch(thunkCreateReview(data));
+  };
+
+  const handleDelete = async (reviewId) => {
+    await dispatch(thunkDeleteReview(reviewId));
+    history.push(`/pokemon/${pokeId}`);
   };
 
   return (
@@ -51,6 +49,8 @@ function Comments() {
       <h1>Review Section</h1>
       <form onSubmit={createReview}>
         <textarea
+          required
+          value={review}
           onChange={(e) => setReview(e.target.value)}
           placeholder="Write your review here"
         ></textarea>
@@ -63,19 +63,21 @@ function Comments() {
               <div className="poke-text">
                 <div className="poke-review">
                   {pokemonId === review.pokemonId ? (
-                    <>
+                    <div>
                       {review.review}
                       <div>
                         {userObj.id === review.userId ? (
                           <div>
-                            <button>Test Edit</button>
+                            {/* <button>Edit Your Review</button> */}
                             <div>
-                              <button onClick={handleDelete}>DELETE</button>
+                              <button onClick={() => handleDelete(review.id)}>
+                                Delete Your Review
+                              </button>
                             </div>
                           </div>
                         ) : null}
                       </div>
-                    </>
+                    </div>
                   ) : null}
                 </div>
               </div>
