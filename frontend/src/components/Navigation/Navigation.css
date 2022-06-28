@@ -29,10 +29,13 @@
   color: black;
 }
 .profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
   background-color: #733ca9;
   color: black;
   margin: 0;
-  padding: 9% 9% 4% 9%;
+  padding-right: 2%;
   list-style-type: none;
 }
 

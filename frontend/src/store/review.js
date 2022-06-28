@@ -124,7 +124,6 @@ const reviewReducer = (state = {}, action) => {
       return newState;
 
     case CREATE_REVIEW:
-      console.log(action);
       newState[action.review.createdReview.id] = {
         id: action.review.createdReview.id,
         userId: action.review.createdReview.userId,

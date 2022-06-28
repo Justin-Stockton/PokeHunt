@@ -50,7 +50,7 @@ function Navigation({ isLoaded }) {
       <NavLink to="/pokemon/add" id="home">
         Add Pokemon
       </NavLink>
-      <div>{isLoaded && sessionLinks}</div>
+      {isLoaded && sessionLinks}
     </div>
   );
 }
