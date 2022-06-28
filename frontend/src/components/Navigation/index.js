@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
+import * as sessionActions from "../../store/session";
 
 function Navigation({ isLoaded }) {
+  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const [credential] = useState("Ash Ketchum");
+  const [password] = useState("password");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    return dispatch(sessionActions.login({ credential, password })).catch(
+      async (res) => {
+        const data = await res.json();
+        return data;
+      }
+    );
+  };
 
   let sessionLinks;
   if (sessionUser) {
@@ -14,12 +28,15 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <div>
-          <div>
-            <NavLink to="/login">Log In</NavLink>
-          </div>
-          <div>
-            <NavLink to="/signup">Sign Up</NavLink>
-          </div>
+          <NavLink to="/login">Log In</NavLink>
+        </div>
+        <div>
+          <NavLink to="/signup">Sign Up</NavLink>
+        </div>
+        <div>
+          <form onSubmit={handleSubmit}>
+            <button>Demo User</button>
+          </form>
         </div>
       </>
     );
