@@ -117,7 +117,6 @@ export const thunkDeletePokemon = (pokemonId) => async (dispatch) => {
 //todo Reducer
 
 const pokeReducer = (state = {}, action) => {
-  console.log(action);
   let newState = { ...state };
 
   switch (action.type) {

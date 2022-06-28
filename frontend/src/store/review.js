@@ -14,7 +14,7 @@ const GET_REVIEW = "review/GET_REVIEW";
 
 // ==== UPDATE ==== //
 
-const UPDATE_REVIEW = "review/UPDATE_REVIEW";
+// const UPDATE_REVIEW = "review/UPDATE_REVIEW";
 
 // ==== DELETE ==== //
 
@@ -42,12 +42,12 @@ const actionGetReview = (pokemonId) => {
 
 // ==== UPDATE ==== //
 
-const actionUpdateReview = (review) => {
-  return {
-    type: UPDATE_REVIEW,
-    review,
-  };
-};
+// const actionUpdateReview = (review) => {
+//   return {
+//     type: UPDATE_REVIEW,
+//     review,
+//   };
+// };
 
 // ==== DELETE ==== //
 
@@ -63,7 +63,10 @@ const actionDeleteReview = (reviewId) => {
 // ==== CREATE ==== //
 
 export const thunkCreateReview = (review) => async (dispatch) => {
-  const response = await csrfFetch(`/api/review/${review.pokemonId}`, {
+  console.log("\n\n********");
+  console.log(JSON.stringify(review));
+  console.log("********\n\n");
+  const response = await csrfFetch(`/api/review`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -114,9 +117,19 @@ export const thunkDeleteReview = (pokemonId) => async (dispatch) => {
 
 // ==== todo Define the Reducer==== //
 // (state = {}, action)
-const reviewReducer = () => {
-  console.log("LOL THIS ISNT A THING YET");
-  return;
+const reviewReducer = (state = {}, action) => {
+  let newState = { ...state };
+  console.log(action);
+  switch (action.type) {
+    case GET_REVIEW:
+      action.pokemonId.pokemonReviews.forEach((review) => {
+        newState[review.id] = review;
+      });
+      return newState;
+
+    default:
+      return state;
+  }
 };
 
 export default reviewReducer;

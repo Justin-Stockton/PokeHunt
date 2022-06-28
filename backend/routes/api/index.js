@@ -10,6 +10,6 @@ router.use("/users", usersRouter);
 
 router.use("/pokemon", pokemonRouter);
 
-router.use("/reviews", reviewRouter);
+router.use("/review", reviewRouter);
 
 module.exports = router;

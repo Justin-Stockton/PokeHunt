@@ -16,14 +16,14 @@ const router = express.Router();
 // ==== CREATE ==== //
 
 router.post(
-  "/:pokeId(\\d+)",
+  "/",
   //   validateReview,
   asyncHandler(async (req, res) => {
-    const { review, pokeId, userId } = req.body;
+    const { review, pokemonId, userId } = req.body;
 
     const createdReview = await Review.create({
       userId,
-      pokeId,
+      pokemonId,
       review,
     });
     return res.json({
