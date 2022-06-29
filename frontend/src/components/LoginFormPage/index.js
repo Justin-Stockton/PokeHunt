@@ -25,7 +25,7 @@ function LoginFormPage() {
   };
 
   return (
-    <div className="content-wrapper">
+    <div className="content-wrapper" style={{ marginTop: "15%" }}>
       <form onSubmit={handleSubmit} className="form">
         <ul>
           {errors.map((error, idx) => (

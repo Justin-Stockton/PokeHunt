@@ -26,6 +26,7 @@
 }
 #home {
   background-color: black;
+  text-decoration: none;
 }
 
 #home:hover {
@@ -41,10 +42,6 @@
   margin: 0;
   padding-right: 2%;
   list-style-type: none;
-}
-.github-pic {
-  height: 40px;
-  width: 40px;
 }
 
 li {
