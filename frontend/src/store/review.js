@@ -115,15 +115,19 @@ export const thunkDeleteReview = (pokemonId) => async (dispatch) => {
 // ==== todo Define the Reducer==== //
 // (state = {}, action)
 const reviewReducer = (state = {}, action) => {
-  let newState = { ...state };
+  let newState = {};
   switch (action.type) {
     case GET_REVIEW:
       action.pokemonId.pokemonReviews.forEach((review) => {
         newState[review.id] = review;
+        console.log("\n\n********");
+        console.log(newState);
+        console.log("********\n\n");
       });
       return newState;
 
     case CREATE_REVIEW:
+      newState = { ...state };
       newState[action.review.createdReview.id] = {
         id: action.review.createdReview.id,
         userId: action.review.createdReview.userId,
@@ -135,6 +139,7 @@ const reviewReducer = (state = {}, action) => {
       return newState;
 
     case DELETE_REVIEW:
+      newState = { ...state };
       delete newState[action.reviewId];
       return newState;
 

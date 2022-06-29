@@ -54,7 +54,7 @@ const actionDeletePokemon = (pokemonId) => {
 // CREATE
 
 export const thunkCreatePokemon = (poke) => async (dispatch) => {
-  console.log(poke);
+  // console.log(poke);
   if (poke.imgUrl === "") {
     poke.imgUrl =
       "https://orig00.deviantart.net/0945/f/2011/237/0/8/who__s_that_pokemon__by_amitlu89-d47rmjf.png";
@@ -122,13 +122,14 @@ export const thunkDeletePokemon = (pokemonId) => async (dispatch) => {
 //todo Reducer
 
 const pokeReducer = (state = {}, action) => {
-  let newState = { ...state };
+  let newState = {};
 
   switch (action.type) {
     case GET_POKEMON:
       action.pokemon.pokemon.forEach((pokemon) => {
         newState[pokemon.id] = pokemon;
       });
+
       return newState;
 
     case CREATE_POKEMON:
