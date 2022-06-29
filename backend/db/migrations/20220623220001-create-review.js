@@ -17,6 +17,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: { model: "Pokemons" },
+        onDelete: "CASCADE",
       },
       review: {
         type: Sequelize.TEXT,

@@ -21,6 +21,7 @@ function EditForm() {
   const [name, setName] = useState(pokeArr.name);
   const [description, setDescription] = useState(pokeArr.description);
   const [errors] = useState([]);
+  const [hidden, setHidden] = useState("none");
 
   const sessionUser = useSelector((state) => state.session.user);
   let userId;
@@ -43,35 +44,79 @@ function EditForm() {
   };
   return (
     <>
-      <div>EditForm</div>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={imgUrl}
-          onChange={(e) => setImgUrl(e.target.value)}
-        />
-        <textarea
-          type="text"
-          placeholder="Desciption"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        ></textarea>
-        <button type="submit">Submit changes</button>
-      </form>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button
+          onClick={() =>
+            hidden === "none" ? setHidden("flex") : setHidden("none")
+          }
+        >
+          EditForm
+        </button>
+      </div>
+      <div style={{ display: `${hidden}`, justifyContent: "center" }}>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <h3 style={{ display: "flex", justifyContent: "center" }}>Name</h3>
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <h3 style={{ display: "flex", justifyContent: "center" }}>
+            Pokemon Picture
+          </h3>
+          <input
+            type="text"
+            placeholder="Image URL"
+            value={imgUrl}
+            onChange={(e) => setImgUrl(e.target.value)}
+          />
+          <h3 style={{ display: "flex", justifyContent: "center" }}>
+            Desciption
+          </h3>
+          <textarea
+            type="text"
+            placeholder="Desciption"
+            value={description}
+            rows="10"
+            cols="77"
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          ></textarea>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button
+              onClick={() => {
+                setHidden("none");
+              }}
+              style={{ width: "5rem" }}
+            >
+              Submit changes
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setHidden("none");
+              }}
+              style={{ width: "5rem", marginLeft: "2%" }}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 }

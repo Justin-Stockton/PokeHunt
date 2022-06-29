@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkCreatePokemon } from "../../store/pokemon";
 
@@ -11,15 +11,21 @@ function AddPokemon() {
   const [imgUrl, setImgUrl] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [errors] = useState([]);
 
   const sessionUser = useSelector((state) => state.session.user);
   let userId;
-  if (sessionUser) userId = sessionUser.id;
-  if (!sessionUser) return <Redirect to="/login" />;
+  if (sessionUser) {
+    userId = sessionUser.id;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // if (imgUrl === "") {
+    //   setImgUrl(
+    //     "https://orig00.deviantart.net/0945/f/2011/237/0/8/who__s_that_pokemon__by_amitlu89-d47rmjf.png"
+    //   );
+    // }
 
     const data = {
       userId,
@@ -37,11 +43,17 @@ function AddPokemon() {
     <div>
       <h1>Lets see that Pokemon!!</h1>
       <form onSubmit={handleSubmit}>
-        <ul>
+        {/* <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
-        </ul>
+        </ul> */}
+        {!sessionUser ? (
+          <div>
+            It appears you aren't logged in. If you don't have an account feel
+            free to use the Demo user
+          </div>
+        ) : null}
         <input
           type="text"
           placeholder="Name"
@@ -62,7 +74,9 @@ function AddPokemon() {
           onChange={(e) => setDescription(e.target.value)}
           required
         ></textarea>
-        <button type="submit">Submit your new Pokemon</button>
+        <button type="submit" disabled={!sessionUser}>
+          Submit your new Pokemon
+        </button>
       </form>
     </div>
   );

@@ -35,9 +35,7 @@ function Pokemon() {
                 </NavLink>
               </div>
               <div className="poke-text">
-                <div key={pokemon.id} className="poke-name">
-                  {pokemon.name}
-                </div>
+                <div className="poke-name">{pokemon.name}</div>
                 <div className="poke-description">{pokemon.description}</div>
               </div>
             </div>

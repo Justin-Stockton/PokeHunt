@@ -11,8 +11,8 @@ function Navigation({ isLoaded }) {
   const credential = "Ash Ketchum";
   const password = "password";
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleClick = () => {
+    // e.preventDefault();
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
@@ -27,16 +27,16 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-        <div>
-          <NavLink to="/login">Log In</NavLink>
-        </div>
-        <div>
-          <NavLink to="/signup">Sign Up</NavLink>
-        </div>
-        <div>
-          <form onSubmit={handleSubmit}>
-            <button>Demo User</button>
-          </form>
+        <NavLink to="/login" id="home">
+          Log In
+        </NavLink>
+
+        <NavLink to="/signup" id="home">
+          Sign Up
+        </NavLink>
+
+        <div id="home" onClick={handleClick}>
+          Demo User
         </div>
       </>
     );
@@ -47,10 +47,7 @@ function Navigation({ isLoaded }) {
       <NavLink exact to="/" id="home">
         Home
       </NavLink>
-      <NavLink to="/pokemon/add" id="home">
-        Add Pokemon
-      </NavLink>
-      <div>{isLoaded && sessionLinks}</div>
+      {isLoaded && sessionLinks}
     </div>
   );
 }

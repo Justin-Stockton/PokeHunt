@@ -32,7 +32,14 @@ function SinglePokePage() {
   }
   if (!userObj) {
     return (
-      <>
+      <div
+        style={{
+          display: "flex",
+          marginTop: "6%",
+          flexDirection: "column",
+          justifyContent: "center ",
+        }}
+      >
         <h1>
           It looks like you need to talk to the professor before proceeding!
         </h1>
@@ -43,33 +50,34 @@ function SinglePokePage() {
         <div>
           To skip ahead to being a pokemon master click the Demo user button!!
         </div>
-      </>
+      </div>
     );
   }
   return (
-    <>
-      <div>Thank You For Looking At {pokeArr.name}!</div>
+    <div>
+      <div style={{ marginTop: "5%" }}>
+        <h1 style={{ display: "flex", justifyContent: "center" }}>
+          {pokeArr.name}
+        </h1>
+      </div>
       <div>
-        <div>{pokeArr.name}</div>
-        <div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <img src={`${pokeArr.imgUrl}`} alt="pokemon" />
         </div>
-        <div>{pokeArr.description}</div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          {pokeArr.description}
+        </div>
         {userObj.id === pokeArr.userId ? (
           <form onSubmit={_handleSubmit}>
-            <div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <button type="submit">DELETE YOUR POKEMON</button>
             </div>
           </form>
         ) : null}
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
       {userObj.id === pokeArr.userId ? <EditForm /> : null}
       <Comments />
-    </>
+    </div>
   );
 }
 

@@ -15,6 +15,7 @@ function Comments() {
   const pokeId = poke.pokemonId;
   const pokemonId = parseInt(pokeId, 10);
   const [review, setReview] = useState("");
+  const [hidden, setHidden] = useState("none");
 
   useEffect(() => {
     dispatch(thunkGetReviews(pokeId));
@@ -36,6 +37,7 @@ function Comments() {
       review,
     };
     setReview("");
+    setHidden("");
     dispatch(thunkCreateReview(data));
   };
 
@@ -46,45 +48,93 @@ function Comments() {
 
   return (
     <div>
-      <h1>Review Section</h1>
-      <form onSubmit={createReview}>
-        <textarea
-          required
-          value={review}
-          onChange={(e) => setReview(e.target.value)}
-          placeholder="Write your review here"
-        ></textarea>
-        <button>Add your review!</button>
+      <h2 style={{ display: "flex", justifyContent: "center" }}>
+        Review Section
+      </h2>
+
+      <form
+        onSubmit={createReview}
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
+          <div>
+            <textarea
+              style={{ resize: "none" }}
+              required
+              rows="10"
+              cols="77"
+              value={review}
+              onChange={(e) => setReview(e.target.value)}
+              placeholder="Tell everyone what you think about this Pokemon!"
+            ></textarea>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button>Add your review!</button>
+          </div>
+        </div>
       </form>
-      {reviewArr.map((review, i) => {
-        return (
-          <div key={i}>
-            <div className="review-container">
-              <div className="poke-text">
-                <div className="poke-review">
-                  {pokemonId === review.pokemonId ? (
-                    <div>
-                      {review.review}
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "3rem",
+          boarderBottom: "1px ",
+        }}
+      >
+        <button
+          onClick={(e) => (hidden === "" ? setHidden("none") : setHidden(""))}
+        >
+          Toggle Reviews
+        </button>
+      </div>
+      {reviewArr
+        .sort(function (a, b) {
+          return b.id - a.id;
+        })
+        .map((review, i) => {
+          return (
+            <div key={i} style={{ display: hidden }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  margin: "3%",
+                }}
+              >
+                <div className="poke-text">
+                  <div className="poke-text">
+                    {pokemonId === review.pokemonId ? (
                       <div>
-                        {userObj.id === review.userId ? (
-                          <div>
-                            {/* <button>Edit Your Review</button> */}
+                        {review.review}
+                        <div>
+                          {userObj.id === review.userId ? (
                             <div>
-                              <button onClick={() => handleDelete(review.id)}>
-                                Delete Your Review
-                              </button>
+                              {/* <button>Edit Your Review</button> */}
+                              <div>
+                                <br />
+                                <button onClick={() => handleDelete(review.id)}>
+                                  Delete Your Review
+                                </button>
+                              </div>
+                              <br />
                             </div>
-                          </div>
-                        ) : null}
+                          ) : null}
+                        </div>
                       </div>
-                    </div>
-                  ) : null}
+                    ) : null}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
     </div>
   );
 }
