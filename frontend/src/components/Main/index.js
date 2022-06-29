@@ -19,6 +19,7 @@ function Main() {
             display: "flex",
             flexDirection: "column",
             marginTop: "4%",
+            width: "30%",
           }}
         >
           <button
