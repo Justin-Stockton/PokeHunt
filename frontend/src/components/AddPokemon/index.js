@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkCreatePokemon } from "../../store/pokemon";
 
@@ -11,7 +11,6 @@ function AddPokemon() {
   const [imgUrl, setImgUrl] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [errors, setErrors] = useState([]);
 
   const sessionUser = useSelector((state) => state.session.user);
   let userId;
