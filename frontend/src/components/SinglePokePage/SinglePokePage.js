@@ -54,8 +54,8 @@ function SinglePokePage() {
     );
   }
   return (
-    <>
-      <div>
+    <div>
+      <div style={{ marginTop: "5%" }}>
         <h1 style={{ display: "flex", justifyContent: "center" }}>
           {pokeArr.name}
         </h1>
@@ -69,19 +69,15 @@ function SinglePokePage() {
         </div>
         {userObj.id === pokeArr.userId ? (
           <form onSubmit={_handleSubmit}>
-            <div>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <button type="submit">DELETE YOUR POKEMON</button>
             </div>
           </form>
         ) : null}
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
       {userObj.id === pokeArr.userId ? <EditForm /> : null}
       <Comments />
-    </>
+    </div>
   );
 }
 

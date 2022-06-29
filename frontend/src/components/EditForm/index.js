@@ -21,6 +21,7 @@ function EditForm() {
   const [name, setName] = useState(pokeArr.name);
   const [description, setDescription] = useState(pokeArr.description);
   const [errors] = useState([]);
+  const [hidden, setHidden] = useState("none");
 
   const sessionUser = useSelector((state) => state.session.user);
   let userId;
@@ -44,9 +45,15 @@ function EditForm() {
   return (
     <>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <button>EditForm</button>
+        <button
+          onClick={() =>
+            hidden === "none" ? setHidden("flex") : setHidden("none")
+          }
+        >
+          EditForm
+        </button>
       </div>
-      <div>
+      <div style={{ display: `${hidden}`, justifyContent: "center" }}>
         <form
           onSubmit={handleSubmit}
           style={{
@@ -60,6 +67,7 @@ function EditForm() {
               <li key={idx}>{error}</li>
             ))}
           </ul>
+          <h3 style={{ display: "flex", justifyContent: "center" }}>Name</h3>
           <input
             type="text"
             placeholder="Name"
@@ -67,12 +75,18 @@ function EditForm() {
             onChange={(e) => setName(e.target.value)}
             required
           />
+          <h3 style={{ display: "flex", justifyContent: "center" }}>
+            Pokemon Picture
+          </h3>
           <input
             type="text"
             placeholder="Image URL"
             value={imgUrl}
             onChange={(e) => setImgUrl(e.target.value)}
           />
+          <h3 style={{ display: "flex", justifyContent: "center" }}>
+            Desciption
+          </h3>
           <textarea
             type="text"
             placeholder="Desciption"
@@ -82,7 +96,10 @@ function EditForm() {
             onChange={(e) => setDescription(e.target.value)}
             required
           ></textarea>
-          <button>Submit changes</button>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button style={{ width: "5rem" }}>Submit changes</button>
+            <button style={{ width: "5rem", marginLeft: "2%" }}>Cancel</button>
+          </div>
         </form>
       </div>
     </>
