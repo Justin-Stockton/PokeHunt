@@ -97,8 +97,23 @@ function EditForm() {
             required
           ></textarea>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <button style={{ width: "5rem" }}>Submit changes</button>
-            <button style={{ width: "5rem", marginLeft: "2%" }}>Cancel</button>
+            <button
+              onClick={() => {
+                setHidden("none");
+              }}
+              style={{ width: "5rem" }}
+            >
+              Submit changes
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setHidden("none");
+              }}
+              style={{ width: "5rem", marginLeft: "2%" }}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>
