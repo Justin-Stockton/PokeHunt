@@ -61,8 +61,17 @@ function SinglePokePage() {
         </h1>
       </div>
       <div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <img src={`${pokeArr.imgUrl}`} alt="pokemon" />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <img
+            src={`${pokeArr.imgUrl}`}
+            style={{ width: "20%", height: "20%", borderRadius: "50%" }}
+            alt="pokemon"
+          />
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           {pokeArr.description}

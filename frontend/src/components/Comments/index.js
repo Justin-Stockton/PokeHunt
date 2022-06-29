@@ -47,7 +47,7 @@ function Comments() {
   };
 
   return (
-    <div>
+    <div style={{ marginTop: "5%" }}>
       <h2 style={{ display: "flex", justifyContent: "center" }}>
         Review Section
       </h2>

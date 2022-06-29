@@ -11,6 +11,7 @@ function AddPokemon() {
   const [imgUrl, setImgUrl] = useState("");
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [hidden, setHidden] = useState("none");
 
   const sessionUser = useSelector((state) => state.session.user);
   let userId;
@@ -20,12 +21,6 @@ function AddPokemon() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // if (imgUrl === "") {
-    //   setImgUrl(
-    //     "https://orig00.deviantart.net/0945/f/2011/237/0/8/who__s_that_pokemon__by_amitlu89-d47rmjf.png"
-    //   );
-    // }
 
     const data = {
       userId,
@@ -40,44 +35,124 @@ function AddPokemon() {
   };
 
   return (
-    <div>
-      <h1>Lets see that Pokemon!!</h1>
-      <form onSubmit={handleSubmit}>
-        {/* <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul> */}
-        {!sessionUser ? (
-          <div>
-            It appears you aren't logged in. If you don't have an account feel
-            free to use the Demo user
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        width: "100%",
+      }}
+    >
+      <button
+        style={{ display: "flex", justifyContent: "center", width: "100px" }}
+        onClick={(e) => setHidden("")}
+      >
+        Add Your Own Pokemon!
+      </button>
+      <div
+        style={{
+          display: `${hidden}`,
+          flexDirection: "column",
+          justifyContent: "center",
+          border: "1px solid #A197BD",
+          borderRadius: "1rem",
+          margin: "5%",
+          padding: "5%",
+          width: "40%",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <h1>Lets see that Pokemon!!</h1>
+        </div>
+        <form onSubmit={handleSubmit}>
+          {!sessionUser ? (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <h2>
+                It appears you aren't logged in. If you don't have an account
+                feel free to use the Demo user
+              </h2>
+            </div>
+          ) : null}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              margin: "2rem 0 2rem 0",
+            }}
+          >
+            <div style={{ display: "flex" }}>Name:</div>
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+              style={{ width: "100%" }}
+            />
           </div>
-        ) : null}
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={imgUrl}
-          onChange={(e) => setImgUrl(e.target.value)}
-        />
-        <textarea
-          type="text"
-          placeholder="Desciption"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        ></textarea>
-        <button type="submit" disabled={!sessionUser}>
-          Submit your new Pokemon
-        </button>
-      </form>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              margin: "2rem 0 2rem 0",
+            }}
+          >
+            <div style={{ display: "flex" }}>Image Url:</div>
+            <input
+              type="text"
+              placeholder="Image URL"
+              value={imgUrl}
+              onChange={(e) => setImgUrl(e.target.value)}
+              style={{ width: "100%" }}
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+              margin: "2rem 0 2rem 0",
+            }}
+          >
+            <div style={{ display: "flex" }}>Desciption:</div>
+            <textarea
+              type="text"
+              placeholder="Desciption"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              required
+              rows="7"
+              cols="100"
+              style={{ resize: "none" }}
+            ></textarea>
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button type="submit" disabled={!sessionUser}>
+              Submit your new Pokemon
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setHidden("none");
+              }}
+              style={{
+                display: `flex`,
+                width: "20%",
+                justifyContent: "center",
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

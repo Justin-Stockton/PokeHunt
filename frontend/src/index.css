@@ -25,3 +25,26 @@ body {
   display: flex;
   flex-direction: row-reverse;
 }
+input {
+  border: #733ca9 1px solid;
+  border-radius: 1rem;
+  padding-left: 1rem;
+}
+
+textarea {
+  border: #733ca9 1px solid;
+  border-radius: 1rem;
+  padding-left: 1rem;
+}
+
+button {
+  border-radius: 2rem;
+  /* padding: 1rem 1rem 1rem 1rem; */
+  border: #733ca9 1px solid;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #733ca9;
+  color: black;
+}

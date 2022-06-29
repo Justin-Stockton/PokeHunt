@@ -53,7 +53,12 @@ function EditForm() {
           EditForm
         </button>
       </div>
-      <div style={{ display: `${hidden}`, justifyContent: "center" }}>
+      <div
+        style={{
+          display: `${hidden}`,
+          justifyContent: "center",
+        }}
+      >
         <form
           onSubmit={handleSubmit}
           style={{
@@ -95,6 +100,7 @@ function EditForm() {
             cols="77"
             onChange={(e) => setDescription(e.target.value)}
             required
+            style={{ resize: "none" }}
           ></textarea>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <button

@@ -32,25 +32,39 @@ function LoginFormPage() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "20rem",
+            padding: "5%",
+          }}
+        >
+          <div style={{ marginBottom: "2%" }}>Username or Email:</div>
+          <div style={{ marginBottom: "10%" }}>
+            <input
+              type="text"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              style={{ width: "100%" }}
+              required
+            />
+          </div>
+
+          <div style={{ marginBottom: "2%" }}>Passowrd:</div>
+          <div style={{ marginBottom: "10%" }}>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              style={{ width: "100%" }}
+              required
+            />
+          </div>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <button type="submit">Log In</button>
+          </div>
+        </div>
       </form>
     </div>
   );

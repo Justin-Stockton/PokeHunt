@@ -31,50 +31,101 @@ function SignupFormPage() {
   };
 
   return (
-    <form style={{ marginTop: "10%" }} onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <label>
-        Email
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Username
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Confirm Password
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Sign Up</button>
-    </form>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
+      <form
+        style={{
+          marginTop: "10%",
+        }}
+        onSubmit={handleSubmit}
+      >
+        <ul>
+          {errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
+        <div
+          style={{
+            marginBottom: "1%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          Email:
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            style={{ marginBottom: "3%", width: "15rem" }}
+          />
+        </div>
+        <div
+          style={{
+            marginBottom: "1%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          Username:
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            style={{ marginBottom: "3%", width: "15rem" }}
+          />
+        </div>
+        <div
+          style={{
+            marginBottom: "1%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          Password:
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={{ marginBottom: "3%", width: "15rem" }}
+          />
+        </div>
+        <div
+          style={{
+            marginBottom: "1%",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          Confirm Password:
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            style={{ marginBottom: "3%", width: "15rem" }}
+          />
+        </div>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <button type="submit">Sign Up</button>
+        </div>
+      </form>
+    </div>
   );
 }
 
