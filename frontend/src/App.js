@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
-import Pokemon from "./components/Pokemon";
+import Main from "./components/Main";
 import AddPokemon from "./components/AddPokemon";
 import SinglePokePage from "./components/SinglePokePage/SinglePokePage";
 import * as sessionActions from "./store/session";
@@ -21,19 +21,16 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/login">
+          <Route exact path="/login">
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
+          <Route exact path="/signup">
             <SignupFormPage />
           </Route>
           <Route exact path="/">
-            <Pokemon />
+            <Main />
           </Route>
-          <Route path="/pokemon/add">
-            <AddPokemon />
-          </Route>
-          <Route path="/pokemon/:pokemonId">
+          <Route exact path="/pokemon/:pokemonId">
             <SinglePokePage />
           </Route>
         </Switch>

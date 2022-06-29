@@ -43,35 +43,48 @@ function EditForm() {
   };
   return (
     <>
-      <div>EditForm</div>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          placeholder="Image URL"
-          value={imgUrl}
-          onChange={(e) => setImgUrl(e.target.value)}
-        />
-        <textarea
-          type="text"
-          placeholder="Desciption"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
-        ></textarea>
-        <button type="submit">Submit changes</button>
-      </form>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button>EditForm</button>
+      </div>
+      <div>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <ul>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            type="text"
+            placeholder="Image URL"
+            value={imgUrl}
+            onChange={(e) => setImgUrl(e.target.value)}
+          />
+          <textarea
+            type="text"
+            placeholder="Desciption"
+            value={description}
+            rows="10"
+            cols="77"
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          ></textarea>
+          <button>Submit changes</button>
+        </form>
+      </div>
     </>
   );
 }

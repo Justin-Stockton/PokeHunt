@@ -4,6 +4,7 @@
   background-color: #23272a;
   font-family: Helvetica, sans-serif;
   color: white;
+  font-size: 1rem;
 }
 
 body {
@@ -18,4 +19,9 @@ body {
 .form {
   display: flex;
   flex-direction: column;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: row-reverse;
 }

@@ -4,6 +4,10 @@
   justify-content: space-around;
   background-color: black;
   height: 5rem;
+  position: static;
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 .big-div > * {
@@ -37,6 +41,10 @@
   margin: 0;
   padding-right: 2%;
   list-style-type: none;
+}
+.github-pic {
+  height: 40px;
+  width: 40px;
 }
 
 li {

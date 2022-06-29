@@ -1,15 +1,18 @@
 .container {
   display: flex;
-  width: 50%;
-  margin-left: 10%;
-  padding-top: 3%;
+  width: 100%;
+  /* margin-left: 10%; */
+  padding-top: 15%;
   border-right: solid #a197bd 1px;
-  border-bottom: solid #a197bd 1px;
+  justify-content: center;
 }
 .poke-text {
   padding-left: 1rem;
+  max-width: 600px;
+  width: 600px;
 }
 .poke-name {
   padding-top: 1rem;
   padding-bottom: 1rem;
+  display: flex;
 }

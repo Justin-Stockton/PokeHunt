@@ -47,9 +47,6 @@ function Navigation({ isLoaded }) {
       <NavLink exact to="/" id="home">
         Home
       </NavLink>
-      <NavLink to="/pokemon/add" id="home">
-        Add Pokemon
-      </NavLink>
       {isLoaded && sessionLinks}
     </div>
   );
