@@ -30,7 +30,7 @@ function Pokemon() {
                   <img
                     src={`${pokemon.imgUrl}`}
                     alt=""
-                    style={{ height: "7rem", width: "7rem" }}
+                    style={{ height: "7rem", width: "100%" }}
                   />
                 </NavLink>
               </div>

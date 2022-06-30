@@ -3,7 +3,7 @@ import Pokemon from "../Pokemon";
 import AddPokemon from "../AddPokemon";
 
 function Main() {
-  const [hidden, setHidden] = useState("none");
+  // const [hidden, setHidden] = useState("none");
   return (
     <div>
       <div
@@ -17,28 +17,27 @@ function Main() {
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            marginTop: "4%",
+            margin: "4%",
+            maxWidth: "100%",
             width: "30%",
           }}
         >
-          <button
-            style={{ display: `${!hidden}` }}
-            onClick={(e) => setHidden("")}
-          >
-            Add Your Own Pokemon!
-          </button>
-          <div style={{ display: `${hidden}`, margin: "5% 0 5% 0" }}>
-            <AddPokemon />
+          <div>
+            <div>
+              <AddPokemon />
+            </div>
+            <div style={{ marginTop: "3%" }}>Created by:</div>
+            <div>
+              <a href="https://www.github.com/Justin-Stockton">
+                Justin Stockton
+              </a>
+            </div>
           </div>
-          <button
-            onClick={(e) => setHidden("none")}
-            style={{ display: `${hidden}` }}
-          >
-            Cancel
-          </button>
         </div>
-        <div>
+        <div
+          className="Is it this"
+          style={{ width: "108rem", marginLeft: "10%" }}
+        >
           <Pokemon />
         </div>
       </div>

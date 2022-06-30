@@ -53,7 +53,12 @@ function EditForm() {
           EditForm
         </button>
       </div>
-      <div style={{ display: `${hidden}`, justifyContent: "center" }}>
+      <div
+        style={{
+          display: `${hidden}`,
+          justifyContent: "center",
+        }}
+      >
         <form
           onSubmit={handleSubmit}
           style={{
@@ -85,16 +90,17 @@ function EditForm() {
             onChange={(e) => setImgUrl(e.target.value)}
           />
           <h3 style={{ display: "flex", justifyContent: "center" }}>
-            Desciption
+            Description
           </h3>
           <textarea
             type="text"
-            placeholder="Desciption"
+            placeholder="Description"
             value={description}
             rows="10"
             cols="77"
             onChange={(e) => setDescription(e.target.value)}
             required
+            style={{ resize: "none" }}
           ></textarea>
           <div style={{ display: "flex", justifyContent: "center" }}>
             <button
