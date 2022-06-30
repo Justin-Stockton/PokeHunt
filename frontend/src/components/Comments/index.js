@@ -94,6 +94,7 @@ function Comments() {
         >
           <button
             onClick={(e) => (hidden === "" ? setHidden("none") : setHidden(""))}
+            style={{ marginBottom: "1%" }}
           >
             Toggle Reviews
           </button>
