@@ -39,7 +39,7 @@ function Main() {
         </div>
         <div
           className="Is it this"
-          style={{ width: "108rem", marginLeft: "10%" }}
+          style={{ width: "108rem", marginLeft: "10%", marginBottom: "2%" }}
         >
           <Pokemon />
         </div>
