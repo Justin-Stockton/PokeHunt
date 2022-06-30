@@ -80,20 +80,40 @@ function Comments() {
         </div>
       </form>
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginTop: "3rem",
-          boarderBottom: "1px ",
-        }}
-      >
-        <button
-          onClick={(e) => (hidden === "" ? setHidden("none") : setHidden(""))}
+      {reviewArr[0] ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "3rem",
+            boarderBottom: "1px ",
+          }}
         >
-          Toggle Reviews
-        </button>
-      </div>
+          <button
+            onClick={(e) => (hidden === "" ? setHidden("none") : setHidden(""))}
+          >
+            Toggle Reviews
+          </button>
+        </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "2rem",
+          }}
+        >
+          <h1
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontSize: "2rem",
+            }}
+          >
+            Be the first to leave a review!
+          </h1>
+        </div>
+      )}
       {reviewArr
         .sort(function (a, b) {
           return b.id - a.id;
