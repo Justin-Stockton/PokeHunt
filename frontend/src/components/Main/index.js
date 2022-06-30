@@ -17,7 +17,7 @@ function Main() {
         <div
           style={{
             display: "flex",
-            margin: "4%",
+            margin: "2%",
             maxWidth: "100%",
             width: "30%",
           }}

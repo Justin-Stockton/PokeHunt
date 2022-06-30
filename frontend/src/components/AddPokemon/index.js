@@ -42,7 +42,7 @@ function AddPokemon() {
         flexDirection: "column",
       }}
     >
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", paddingBottom: "2%" }}>
         <button
           style={{ display: "flex", justifyContent: "center", width: "5rem" }}
           onClick={(e) =>
@@ -59,7 +59,6 @@ function AddPokemon() {
           justifyContent: "center",
           border: "1px solid #A197BD",
           borderRadius: "1rem",
-          margin: "5%",
           padding: "5%",
           width: "40%",
         }}
@@ -70,7 +69,7 @@ function AddPokemon() {
             justifyContent: "center",
           }}
         >
-          <h1>Lets see that Pokemon!!</h1>
+          <h1>Lets see that Pokemon!</h1>
         </div>
         <form onSubmit={handleSubmit}>
           {!sessionUser ? (
