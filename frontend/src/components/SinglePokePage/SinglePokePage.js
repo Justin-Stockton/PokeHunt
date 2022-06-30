@@ -40,53 +40,93 @@ function SinglePokePage() {
           justifyContent: "center ",
         }}
       >
-        <h1>
+        <h1
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "3rem",
+          }}
+        >
           It looks like you need to talk to the professor before proceeding!
         </h1>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "2rem",
+          }}
+        >
           I think I saw him over by the Log in button.... or was it the Sign up?
           I don't really remember anymore!
         </div>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            fontSize: "2rem",
+          }}
+        >
           To skip ahead to being a pokemon master click the Demo user button!!
         </div>
       </div>
     );
   }
   return (
-    <div>
-      <div style={{ marginTop: "5%" }}>
-        <h1 style={{ display: "flex", justifyContent: "center" }}>
-          {pokeArr.name}
-        </h1>
-      </div>
+    <>
       <div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            src={`${pokeArr.imgUrl}`}
-            style={{ width: "20%", height: "20%", borderRadius: "50%" }}
-            alt="pokemon"
-          />
+        <div style={{ marginTop: "10%" }}>
+          <h1
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontSize: "2rem",
+            }}
+          >
+            {pokeArr.name}
+          </h1>
         </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          {pokeArr.description}
+        <div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <img
+              src={`${pokeArr.imgUrl}`}
+              style={{ width: "20%", height: "20%", borderRadius: "50%" }}
+              alt="pokemon"
+            />
+          </div>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              fontSize: "150%",
+              fontStyle: "italic",
+              marginBottom: "1%",
+            }}
+          >
+            {pokeArr.description}
+          </div>
+          {userObj.id === pokeArr.userId ? (
+            <form onSubmit={_handleSubmit}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginBottom: "1%",
+                }}
+              >
+                <button type="submit">DELETE YOUR POKEMON</button>
+              </div>
+            </form>
+          ) : null}
         </div>
-        {userObj.id === pokeArr.userId ? (
-          <form onSubmit={_handleSubmit}>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <button type="submit">DELETE YOUR POKEMON</button>
-            </div>
-          </form>
-        ) : null}
+        {userObj.id === pokeArr.userId ? <EditForm /> : null}
+        <Comments />
       </div>
-      {userObj.id === pokeArr.userId ? <EditForm /> : null}
-      <Comments />
-    </div>
+    </>
   );
 }
 

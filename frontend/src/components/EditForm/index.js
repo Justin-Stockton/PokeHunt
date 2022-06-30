@@ -90,11 +90,11 @@ function EditForm() {
             onChange={(e) => setImgUrl(e.target.value)}
           />
           <h3 style={{ display: "flex", justifyContent: "center" }}>
-            Desciption
+            Description
           </h3>
           <textarea
             type="text"
-            placeholder="Desciption"
+            placeholder="Description"
             value={description}
             rows="10"
             cols="77"

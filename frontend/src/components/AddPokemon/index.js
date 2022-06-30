@@ -40,15 +40,18 @@ function AddPokemon() {
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
-        width: "100%",
       }}
     >
-      <button
-        style={{ display: "flex", justifyContent: "center", width: "100px" }}
-        onClick={(e) => setHidden("")}
-      >
-        Add Your Own Pokemon!
-      </button>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button
+          style={{ display: "flex", justifyContent: "center", width: "5rem" }}
+          onClick={(e) =>
+            hidden === "none" ? setHidden("flex") : setHidden("none")
+          }
+        >
+          Add Your Own Pokemon!
+        </button>
+      </div>
       <div
         style={{
           display: `${hidden}`,
@@ -110,7 +113,6 @@ function AddPokemon() {
               placeholder="Image URL"
               value={imgUrl}
               onChange={(e) => setImgUrl(e.target.value)}
-              style={{ width: "100%" }}
             />
           </div>
           <div
@@ -121,10 +123,10 @@ function AddPokemon() {
               margin: "2rem 0 2rem 0",
             }}
           >
-            <div style={{ display: "flex" }}>Desciption:</div>
+            <div style={{ display: "flex" }}>Description:</div>
             <textarea
               type="text"
-              placeholder="Desciption"
+              placeholder="Description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
@@ -133,9 +135,9 @@ function AddPokemon() {
               style={{ resize: "none" }}
             ></textarea>
           </div>
-          <div style={{ display: "flex", justifyContent: "center" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <button type="submit" disabled={!sessionUser}>
-              Submit your new Pokemon
+              Submit
             </button>
             <button
               onClick={(e) => {
