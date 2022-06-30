@@ -88,6 +88,7 @@ function Comments() {
             display: "flex",
             justifyContent: "center",
             marginTop: "3rem",
+            marginBottom: "3%",
             boarderBottom: "1px ",
           }}
         >
