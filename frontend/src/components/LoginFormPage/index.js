@@ -51,7 +51,7 @@ function LoginFormPage() {
             />
           </div>
 
-          <div style={{ marginBottom: "2%" }}>Passowrd:</div>
+          <div style={{ marginBottom: "2%" }}>Password:</div>
           <div style={{ marginBottom: "10%" }}>
             <input
               type="password"

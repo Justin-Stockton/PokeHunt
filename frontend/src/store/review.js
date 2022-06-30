@@ -120,9 +120,9 @@ const reviewReducer = (state = {}, action) => {
     case GET_REVIEW:
       action.pokemonId.pokemonReviews.forEach((review) => {
         newState[review.id] = review;
-        console.log("\n\n********");
-        console.log(newState);
-        console.log("********\n\n");
+        // console.log("\n\n********");
+        // console.log(newState);
+        // console.log("********\n\n");
       });
       return newState;
 
