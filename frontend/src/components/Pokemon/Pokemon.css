@@ -1,7 +1,7 @@
 .container {
   display: flex;
   width: 100%;
-  padding-top: 15%;
+  padding-top: 5%;
   border-right: solid #a197bd 1px;
   justify-content: center;
 }

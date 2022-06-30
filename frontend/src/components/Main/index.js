@@ -28,7 +28,10 @@ function Main() {
             </div>
             <div style={{ marginTop: "3%" }}>Created by:</div>
             <div>
-              <a href="https://www.github.com/Justin-Stockton">
+              <a
+                href="https://www.github.com/Justin-Stockton"
+                target="https://www.github.com/Justin-Stockton"
+              >
                 Justin Stockton
               </a>
             </div>
