@@ -39,6 +39,7 @@ function Pokemon() {
                 <div className="poke-name">{pokemon.name}</div>
                 <div className="poke-description">{pokemon.description}</div>
               </div>
+              <Upvote />
             </div>
           </div>
         );
