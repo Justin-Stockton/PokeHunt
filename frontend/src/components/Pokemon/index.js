@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetAllPokemons } from "../../store/pokemon";
 import "./Pokemon.css";
 import { NavLink } from "react-router-dom";
+import Upvote from "../Upvote";
 
 function Pokemon() {
   const dispatch = useDispatch();
