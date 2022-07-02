@@ -24,6 +24,9 @@ function Upvote({ poke }) {
     return pokemon.pokemonId === pokemonId && pokemon.userId === userId;
   })[0];
 
+  useEffect(() => {
+    upvoteObj ? setColor("10px solid #733CA9") : setColor("10px solid #5c6b73");
+  });
   let upVoteId;
 
   upvoteObj ? (upVoteId = upvoteObj.id) : (upVoteId = null);
