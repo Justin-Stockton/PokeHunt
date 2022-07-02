@@ -24,6 +24,7 @@ router.post(
     const addUpVote = await UpVote.create({
       userId,
       pokemonId,
+      UpVote: true,
     });
 
     return res.json({
@@ -32,19 +33,22 @@ router.post(
   })
 );
 
+// ==== DELETE ==== //
+
 router.post(
-  "/",
+  "/delete",
   asyncHandler(async (req, res) => {
     const { pokemonId, userId } = req.body;
 
     const removeUpVote = await UpVote.destroy({
       where: {
-        userId,
         pokemonId,
+        userId,
       },
     });
 
     return res.json({
+      message: "update worked",
       removeUpVote,
     });
   })

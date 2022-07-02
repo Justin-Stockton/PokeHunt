@@ -1,19 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import {
+  thunkAddUpVote,
+  thunkRemoveUpVote,
+  thunkGetUpVotes,
+} from "../../store/upvote";
 
-function Upvote() {
+function Upvote({ poke }) {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const pokemonId = poke.id;
   const [color, setColor] = useState("10px solid #5c6b73");
-  const num = 321;
+  const sessionUser = useSelector((state) => state.session.user);
+  let userId;
+  if (sessionUser) userId = sessionUser.id;
+
+  const test = useSelector((state) => {
+    return Object.values(state.upVotes);
+  });
+
+  const num = test.filter((pokemon) => {
+    return pokemon.pokemonId === pokemonId && pokemon.upVote === true;
+  }).length;
+
   return (
     <button
       style={{ backgroundColor: "transparent", marginRight: "2rem" }}
       //
+
       onClick={(e) => {
         e.preventDefault();
+        const data = {
+          userId,
+          pokemonId,
+        };
+
+        if (!sessionUser) {
+          alert(
+            "You must be logged in to vote, but you can always use the demo user!"
+          );
+          history.push("/login");
+        }
 
         if (color === "10px solid #5c6b73") {
           setColor("10px solid red");
+          dispatch(thunkAddUpVote(data));
         } else {
           setColor("10px solid #5c6b73");
+          dispatch(thunkRemoveUpVote(data));
+          dispatch(thunkGetUpVotes());
         }
       }}
     >

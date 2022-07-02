@@ -145,15 +145,8 @@ const pokeReducer = (state = {}, action) => {
 
     case UPDATE_POKEMON:
       newState = { ...state };
-      newState[action.pokemon.pokemon.id] = {
-        id: action.pokemon.pokemon.id,
-        userId: action.pokemon.pokemon.userId,
-        name: action.pokemon.pokemon.name,
-        imgUrl: action.pokemon.pokemon.imgUrl,
-        description: action.pokemon.pokemon.description,
-        createdAt: action.pokemon.pokemon.createdAt,
-        updatedAt: action.pokemon.pokemon.updateAt,
-      };
+      const pokemonData = action.pokemon.pokemon;
+      newState[pokemonData.id] = pokemonData;
       return newState;
 
     case DELETE_POKEMON:
