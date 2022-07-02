@@ -27,6 +27,7 @@ function Upvote({ poke }) {
   useEffect(() => {
     upvoteObj ? setColor("10px solid #733CA9") : setColor("10px solid #5c6b73");
   });
+
   let upVoteId;
 
   upvoteObj ? (upVoteId = upvoteObj.id) : (upVoteId = null);
