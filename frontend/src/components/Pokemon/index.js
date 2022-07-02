@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Redirect } from "react-router-dom";
 import { thunkGetAllPokemons } from "../../store/pokemon";
 import "./Pokemon.css";
 import { NavLink } from "react-router-dom";

@@ -54,7 +54,6 @@ const actionDeletePokemon = (pokemonId) => {
 // CREATE
 
 export const thunkCreatePokemon = (poke) => async (dispatch) => {
-  // console.log(poke);
   if (poke.imgUrl === "") {
     poke.imgUrl =
       "https://orig00.deviantart.net/0945/f/2011/237/0/8/who__s_that_pokemon__by_amitlu89-d47rmjf.png";

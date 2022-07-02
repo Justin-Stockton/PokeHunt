@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import {
-  thunkAddUpVote,
-  thunkRemoveUpVote,
-  thunkGetUpVotes,
-} from "../../store/upvote";
+import { thunkAddUpVote, thunkRemoveUpVote } from "../../store/upvote";
 
 function Upvote({ poke }) {
   const dispatch = useDispatch();
@@ -24,16 +20,23 @@ function Upvote({ poke }) {
     return pokemon.pokemonId === pokemonId && pokemon.upVote === true;
   }).length;
 
+  const upvoteObj = test.filter((pokemon) => {
+    return pokemon.pokemonId === pokemonId && pokemon.userId === userId;
+  })[0];
+
+  let upVoteId;
+
+  upvoteObj ? (upVoteId = upvoteObj.id) : (upVoteId = null);
+
   return (
     <button
       style={{ backgroundColor: "transparent", marginRight: "2rem" }}
-      //
-
       onClick={(e) => {
         e.preventDefault();
         const data = {
           userId,
           pokemonId,
+          upVoteId,
         };
 
         if (!sessionUser) {
@@ -44,12 +47,11 @@ function Upvote({ poke }) {
         }
 
         if (color === "10px solid #5c6b73") {
-          setColor("10px solid red");
+          setColor("10px solid #733CA9");
           dispatch(thunkAddUpVote(data));
         } else {
           setColor("10px solid #5c6b73");
           dispatch(thunkRemoveUpVote(data));
-          dispatch(thunkGetUpVotes());
         }
       }}
     >

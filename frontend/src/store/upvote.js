@@ -21,7 +21,6 @@ const actionGetUpVotes = (pokemonId) => {
 };
 
 const actionRemoveUpVote = (data) => {
-  console.log("This is the action data", data);
   return {
     type: REMOVE_UPVOTE,
     data,
@@ -60,9 +59,6 @@ export const thunkAddUpVote = (data) => async (dispatch) => {
 };
 
 export const thunkRemoveUpVote = (data) => async (dispatch) => {
-  console.log(data, "This is the thunk remove data");
-
-  // const id = data.id;
   const response = await csrfFetch(`/api/upvote/delete`, {
     method: "POST",
     data,
@@ -92,7 +88,9 @@ const upVoteReducer = (state = {}, action) => {
       return newState;
 
     case REMOVE_UPVOTE:
+      const upvoteId = action.data.upVoteId;
       newState = { ...state };
+      delete newState[upvoteId];
 
       return newState;
 
