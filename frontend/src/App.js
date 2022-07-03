@@ -9,6 +9,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import "./index.css";
 import NotFound from "./components/NotFoundPage";
+import UserProfile from "./components/UserProfile";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,6 +33,9 @@ function App() {
           </Route>
           <Route exact path="/pokemon/:pokemonId">
             <SinglePokePage />
+          </Route>
+          <Route exact path="/users/:userId">
+            <UserProfile />
           </Route>
           <Route>
             <NotFound />
