@@ -8,6 +8,7 @@ import SinglePokePage from "./components/SinglePokePage/SinglePokePage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import "./index.css";
+import NotFound from "./components/NotFoundPage";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -31,6 +32,9 @@ function App() {
           </Route>
           <Route exact path="/pokemon/:pokemonId">
             <SinglePokePage />
+          </Route>
+          <Route>
+            <NotFound />
           </Route>
         </Switch>
       )}
