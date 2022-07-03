@@ -125,13 +125,14 @@ const reviewReducer = (state = {}, action) => {
 
     case CREATE_REVIEW:
       newState = { ...state };
-      newState[action.review.createdReview.id] = {
-        id: action.review.createdReview.id,
-        userId: action.review.createdReview.userId,
-        pokemonId: action.review.createdReview.pokemonId,
-        review: action.review.createdReview.review,
-        createdAt: action.review.createdReview.createdAt,
-        updatedAt: action.review.createdReview.updatedAt,
+      const createdReview = action.review.createdReview;
+      newState[createdReview.id] = {
+        id: createdReview.id,
+        userId: createdReview.userId,
+        pokemonId: createdReview.pokemonId,
+        review: createdReview.review,
+        createdAt: createdReview.createdAt,
+        updatedAt: createdReview.updatedAt,
       };
       return newState;
 

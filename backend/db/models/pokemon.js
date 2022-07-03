@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true,
     });
+    Pokemon.hasMany(models.UpVote, {
+      foreignKey: "pokemonId",
+      onDelete: "CASCADE",
+      hooks: true,
+    });
   };
   return Pokemon;
 };

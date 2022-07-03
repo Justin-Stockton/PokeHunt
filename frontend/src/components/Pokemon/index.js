@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { Redirect } from "react-router-dom";
 import { thunkGetAllPokemons } from "../../store/pokemon";
 import "./Pokemon.css";
 import { NavLink } from "react-router-dom";
+import Upvote from "../Upvote";
+import { thunkGetUpVotes } from "../../store/upvote";
 
 function Pokemon() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(thunkGetAllPokemons());
+    dispatch(thunkGetUpVotes());
   }, [dispatch]);
 
   const pokemonArr = useSelector((state) => {
@@ -38,6 +40,7 @@ function Pokemon() {
                 <div className="poke-name">{pokemon.name}</div>
                 <div className="poke-description">{pokemon.description}</div>
               </div>
+              <Upvote poke={pokemon} />
             </div>
           </div>
         );

@@ -46,6 +46,7 @@ function Main() {
                   target="https://reactjs.org/"
                 >
                   <img
+                    alt="technolgy logo"
                     style={{ height: "15%", width: "15%" }}
                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg"
                   />
@@ -62,6 +63,7 @@ function Main() {
                   target="https://redux.js.org/"
                 >
                   <img
+                    alt="technolgy logo"
                     style={{ height: "15%", width: "15%" }}
                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg"
                   />
@@ -78,6 +80,7 @@ function Main() {
                   target="https://nodejs.org/en/"
                 >
                   <img
+                    alt="technolgy logo"
                     style={{ height: "15%", width: "15%" }}
                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original-wordmark.svg"
                   />
@@ -95,6 +98,7 @@ function Main() {
                   target="https://expressjs.com/"
                 >
                   <img
+                    alt="technolgy logo"
                     style={{ height: "15%", width: "15%" }}
                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg"
                   />
@@ -112,6 +116,7 @@ function Main() {
                   target="https://www.postgresql.org/"
                 >
                   <img
+                    alt="technolgy logo"
                     style={{ height: "15%", width: "15%" }}
                     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original-wordmark.svg"
                   />

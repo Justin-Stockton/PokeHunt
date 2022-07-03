@@ -42,7 +42,7 @@ function AddPokemon() {
         flexDirection: "column",
       }}
     >
-      <div style={{ display: "flex", paddingBottom: "2%" }}>
+      <div style={{ display: "flex", paddingBottom: "2%", marginTop: "1rem" }}>
         <button
           style={{ display: "flex", justifyContent: "center", width: "5rem" }}
           onClick={(e) =>

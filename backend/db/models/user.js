@@ -55,6 +55,7 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Review, { foreignKey: "userId" });
 
     User.hasMany(models.Pokemon, { foreignKey: "userId" });
+    User.hasMany(models.UpVote, { foreignKey: "userId" });
   };
 
   User.prototype.toSafeObject = function () {
