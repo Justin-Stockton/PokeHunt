@@ -103,6 +103,46 @@ module.exports = {
           description:
             "Jolteon (Japanese: サンダース Thunders) is an Electric-type Pokémon introduced in Generation I. It evolves from Eevee when exposed to a Thunder Stone. It is one of Eevee's final forms, the others being Vaporeon, Flareon, Espeon, Umbreon, Leafeon, Glaceon, and Sylveon.",
         },
+        {
+          userId: 2,
+          name: "Lapras",
+          imgUrl:
+            "https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/131.svg",
+          description:
+            "Lapras (Japanese: ラプラス Laplace) is a dual-type Water/Ice Pokémon introduced in Generation I. While it is not known to evolve into or from any other Pokémon, Lapras has a Gigantamax form.",
+        },
+        {
+          userId: 2,
+          name: "Mewtwo",
+          imgUrl:
+            "https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/150.svg",
+          description:
+            "While it is not known to evolve into or from any other Pokémon, Mewtwo can Mega Evolve into two different forms: Mega Mewtwo X using Mewtwonite X. Mega Mewtwo Y using Mewtwonite Y. It is a member of the Mew duo along with Mew.",
+        },
+        {
+          userId: 2,
+          name: "Onix",
+          imgUrl:
+            "https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/95.svg",
+          description:
+            "Onix (Japanese: イワーク Iwark) is a dual-type Rock/Ground Pokémon introduced in Generation I. It evolves into Steelix when traded while holding a Metal Coat. In Pokémon Legends: Arceus, however, it evolves when exposed to a Metal Coat.",
+        },
+        {
+          userId: 2,
+          name: "Gengar",
+          imgUrl:
+            "https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/94.svg",
+          description:
+            "Gengar (Japanese: ゲンガー Gangar) is a dual-type Ghost/Poison Pokémon introduced in Generation I. It evolves from Haunter when traded, or when exposed to a Linking Cord (Pokémon Legends: Arceus). It is the final form of Gastly. Gengar has two other forms. It can Mega Evolve into Mega Gengar using the Gengarite. It has a Gigantamax form.",
+        },
+        {
+          userId: 2,
+          name: "Jigglypuff",
+          imgUrl:
+            "https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/39.svg",
+          description:
+            "Jigglypuff (Japanese: プリン Purin) is a dual-type Normal/Fairy Pokémon introduced in Generation I. Prior to Generation VI, it was a pure Normal-type Pokémon. It evolves from Igglybuff when leveled up with high friendship and evolves into Wigglytuff when exposed to a Moon Stone.",
+        },
       ],
       {}
     );
