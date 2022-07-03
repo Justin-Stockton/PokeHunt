@@ -11,6 +11,8 @@ const CREATE_POKEMON = "pokemon/CREATE_POKEMON";
 
 const GET_POKEMON = "pokemon/GET_POKEMON";
 
+const GET_USER_POKEMON = "pokemon/GET_USER_POKEMON";
+
 // - UPDATE
 
 const UPDATE_POKEMON = "pokemon/UPDATE_POKEMON";
@@ -31,6 +33,13 @@ const actionCreatePokemon = (pokemon) => {
 const actionGetPokemons = (pokemon) => {
   return {
     type: GET_POKEMON,
+    pokemon,
+  };
+};
+
+const actionGetUserPokemon = (pokemon) => {
+  return {
+    type: GET_USER_POKEMON,
     pokemon,
   };
 };
@@ -91,6 +100,20 @@ export const thunkGetAllPokemons = () => async (dispatch) => {
   return await response.json();
 };
 
+export const thunkGetUserPokemon = (userId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/pokemon/${userId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const usersPokemon = await response.json();
+    dispatch(actionGetUserPokemon(usersPokemon));
+    return response;
+  }
+};
 //UPDATE
 
 export const thunkUpdatePokemon = (poke) => async (dispatch) => {
@@ -151,6 +174,14 @@ const pokeReducer = (state = {}, action) => {
     case DELETE_POKEMON:
       newState = { ...state };
       delete newState[action.pokemonId];
+      return newState;
+
+    case GET_USER_POKEMON:
+      console.log(action);
+      console.log(action.pokemon);
+      action.pokemon.usersPokemon.forEach((pokemon) => {
+        newState[pokemon.id] = pokemon;
+      });
       return newState;
 
     default:

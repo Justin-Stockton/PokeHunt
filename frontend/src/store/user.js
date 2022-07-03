@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_ONE = "users/GET_ONE";
 
-const GET_ALL = "users/GET_ALL";
+// const GET_ALL = "users/GET_ALL";
 
 const actionGetOne = (user) => {
   return {
@@ -11,11 +11,11 @@ const actionGetOne = (user) => {
   };
 };
 
-const actionGetAll = () => {
-  return {
-    type: GET_ALL,
-  };
-};
+// const actionGetAll = () => {
+//   return {
+//     type: GET_ALL,
+//   };
+// };
 
 export const thunkGetOneUser = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${userId}`, {

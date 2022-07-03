@@ -58,6 +58,18 @@ router.get(
   })
 );
 
+router.get(
+  "/:userId(\\d+)",
+  asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId, 10);
+    const usersPokemon = await Pokemon.findAll({ where: { userId } });
+
+    return res.json({
+      usersPokemon,
+    });
+  })
+);
+
 // ==== - TODO READ ONE ==== //
 
 router.get(
