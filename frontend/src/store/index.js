@@ -4,12 +4,14 @@ import sessionReducer from "./session";
 import pokeReducer from "./pokemon";
 import reviewReducer from "./review";
 import upVoteReducer from "./upvote";
+import userReducer from "./user";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   pokemon: pokeReducer,
   review: reviewReducer,
   upVotes: upVoteReducer,
+  users: userReducer,
 });
 
 let enhancer;

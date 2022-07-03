@@ -40,4 +40,30 @@ router.post(
     });
   })
 );
+
+// get one
+router.get(
+  "/:userId",
+  asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId, 10);
+    console.log(userId);
+    const user = await User.findByPk(userId);
+    return res.json({
+      user,
+    });
+  })
+);
+
+// get all
+
+router.get(
+  "/",
+  asyncHandler(async (req, res) => {
+    const users = await User.findAll();
+    return res.json({
+      users,
+    });
+  })
+);
+
 module.exports = router;
