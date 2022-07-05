@@ -11,6 +11,7 @@ function UserProfile() {
   useEffect(() => {
     dispatch(thunkGetOneUser(userId));
     dispatch(thunkGetUserPokemon(userId));
+    window.scrollTo(0, 0);
   }, [dispatch, userId]);
 
   const pokemonArr = useSelector((state) => {
