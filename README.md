@@ -10,6 +10,18 @@
 - Express.js
 - Sequelize
 
+# Site Preview
+### Login/Demo User
+![Login-and-demo](https://user-images.githubusercontent.com/99220434/177260775-5b0f6997-1ed1-4681-9891-7c7e0eaa2958.gif)
+### Create a Pokemon
+![create-pokemon](https://user-images.githubusercontent.com/99220434/177260935-1de15dde-3c05-4522-851d-72c47cfe4fa9.gif)
+### Edit a Pokemon
+![edit](https://user-images.githubusercontent.com/99220434/177261141-edb271b9-e60c-4547-b68a-a23d8ff27103.gif)
+### Delete a Pokemon
+![delete-2](https://user-images.githubusercontent.com/99220434/177262160-ecdba9d6-417f-4170-8a28-037f0c5a4042.gif)
+
+
+
 ### [Live link to PokeHunt](https://jstockton-pokehunt.herokuapp.com/)
 
 ### [Link to the PokeHunt Wiki](https://github.com/Justin-Stockton/PokeHunt/wiki)
