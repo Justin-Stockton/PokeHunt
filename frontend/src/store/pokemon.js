@@ -177,8 +177,8 @@ const pokeReducer = (state = {}, action) => {
       return newState;
 
     case GET_USER_POKEMON:
-      console.log(action);
-      console.log(action.pokemon);
+      // console.log(action);
+      // console.log(action.pokemon);
       action.pokemon.usersPokemon.forEach((pokemon) => {
         newState[pokemon.id] = pokemon;
       });
