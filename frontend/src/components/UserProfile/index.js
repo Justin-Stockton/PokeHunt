@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { thunkGetOneUser } from "../../store/user";
 import { useParams, NavLink } from "react-router-dom";
 import { thunkGetUserPokemon } from "../../store/pokemon";
-import { thunkGetUpVotes } from "../../store/upvote";
-// import Upvote from "../Upvote";
 
 function UserProfile() {
   const { userId } = useParams();
@@ -13,7 +11,6 @@ function UserProfile() {
   useEffect(() => {
     dispatch(thunkGetOneUser(userId));
     dispatch(thunkGetUserPokemon(userId));
-    // dispatch(thunkGetUpVotes());
   }, [dispatch, userId]);
 
   const pokemonArr = useSelector((state) => {
