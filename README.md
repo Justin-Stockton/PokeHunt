@@ -30,14 +30,6 @@
 
 ### [PokeHunt's Features](https://github.com/Justin-Stockton/PokeHunt/wiki/Features)
 
-# Splash Page
-
-# Pokemon
-
-# Reviews
-
-# Usage
-
 ## Development
 
 Want to contribute?
