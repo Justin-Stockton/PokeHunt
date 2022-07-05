@@ -2,7 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const GET_ONE = "users/GET_ONE";
 
-// const GET_ALL = "users/GET_ALL";
+const GET_ALL = "users/GET_ALL";
 
 const actionGetOne = (user) => {
   return {
@@ -11,11 +11,12 @@ const actionGetOne = (user) => {
   };
 };
 
-// const actionGetAll = () => {
-//   return {
-//     type: GET_ALL,
-//   };
-// };
+const actionGetAll = (users) => {
+  return {
+    type: GET_ALL,
+    users,
+  };
+};
 
 export const thunkGetOneUser = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${userId}`, {
@@ -30,6 +31,19 @@ export const thunkGetOneUser = (userId) => async (dispatch) => {
     return response;
   }
 };
+export const thunkGetAllUsers = () => async (dispatch) => {
+  const response = await csrfFetch(`/api/users`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    const users = await response.json();
+    dispatch(actionGetAll(users));
+    return response;
+  }
+};
 
 const userReducer = (state = {}, action) => {
   let newState = {};
@@ -38,6 +52,14 @@ const userReducer = (state = {}, action) => {
       const user = action.user.user;
       newState[user.id] = user;
       return newState;
+
+    case GET_ALL:
+      action.users.users.forEach((user) => {
+        newState[user.id] = user;
+      });
+
+      return newState;
+
     default:
       return state;
   }
