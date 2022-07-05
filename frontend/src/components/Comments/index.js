@@ -5,7 +5,7 @@ import {
   thunkCreateReview,
 } from "../../store/review";
 import { thunkGetAllUsers } from "../../store/user";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function Comments() {
@@ -171,11 +171,13 @@ function Comments() {
                         <p>{review.review}</p>
 
                         <div>
-                          -{" "}
-                          {allUsersObj[review.userId] &&
-                          allUsersObj[review.userId].username
-                            ? allUsersObj[review.userId].username
-                            : loading}
+                          <Link to={`/users/${review.userId}`}>
+                            -{" "}
+                            {allUsersObj[review.userId] &&
+                            allUsersObj[review.userId].username
+                              ? allUsersObj[review.userId].username
+                              : loading}
+                          </Link>
                         </div>
                         <div>
                           {userObj.id === review.userId ? (
