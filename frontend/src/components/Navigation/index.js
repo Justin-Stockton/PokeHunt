@@ -12,7 +12,7 @@ function Navigation({ isLoaded }) {
   const password = "password";
 
   const handleClick = () => {
-    // e.preventDefault();
+
     return dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();

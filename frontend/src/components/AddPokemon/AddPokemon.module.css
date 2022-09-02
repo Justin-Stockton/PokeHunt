@@ -1,0 +1,101 @@
+.background {
+  display: flex;
+  z-index: 12;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0px;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  border-bottom: 1px solid #d7d7d7;
+  position: fixed;
+  z-index: 13;
+  opacity: none;
+  max-height: 60%;
+  width: 29%;
+  background-color: #fff;
+  border-radius: 12px;
+  top: 15rem;
+  overflow: auto;
+  min-width: 200px;
+  overflow: hidden;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d7d7d7;
+  width: 100%;
+  max-height: 40px;
+  margin-top: 10px;
+  font-size: 16px;
+  padding: 2% 5%;
+  margin-bottom: 5px;
+}
+
+.form {
+  padding: 5%;
+}
+
+.ta {
+  width: 100%;
+  height: 40%;
+  min-height: 200px;
+  overflow-y: hidden;
+  resize: none;
+  margin-top: 1%;
+  border-radius: 8px;
+}
+
+.buttonContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2%;
+}
+.xContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+}
+.xContainer:hover {
+  border-radius: 50%;
+  background-color: #d7d7d7;
+}
+.filler {
+  height: 12px;
+  width: 12px;
+}
+
+.input {
+  width: 100%;
+  padding: 2%;
+  margin-top: 1%;
+  border-radius: 8px;
+  border: none;
+}
+
+.input:focus,
+.ta:focus {
+  background-color: #fff;
+}
+.label {
+  padding-top: 3%;
+}
+
+.button {
+  height: 40px;
+  width: 80px;
+  border-radius: 8px;
+}

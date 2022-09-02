@@ -1,0 +1,15 @@
+.icons {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.mainContainer {
+  position: relative;
+  top: 80px;
+  display: flex;
+}
+
+.rightContainer {
+  min-width: 20%;
+  padding-left: 2%;
+}
