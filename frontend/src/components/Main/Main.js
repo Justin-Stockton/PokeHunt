@@ -12,7 +12,10 @@ function Main() {
       </div>
       <div className={classes.rightContainer}>
         <div>
-          <button onClick={() => setDisplay(!display)}>
+          <button
+            className={classes.button}
+            onClick={() => setDisplay(!display)}
+          >
             Add Your Own Pokemon!
           </button>
 
@@ -26,6 +29,7 @@ function Main() {
               Justin Stockton
             </a>
             <h3>Technologies used:</h3>
+
             <div className={classes.icons}>
               <a href="https://reactjs.org/" target="https://reactjs.org/">
                 <img

@@ -13,3 +13,13 @@
   min-width: 20%;
   padding-left: 2%;
 }
+
+.button {
+  display: flex;
+  justify-content: center;
+  max-width: 120px;
+  height: 60px;
+  align-items: center;
+  border-radius: 8px;
+  margin: 5% 0;
+}
