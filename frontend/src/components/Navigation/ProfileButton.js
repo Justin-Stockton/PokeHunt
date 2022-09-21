@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import * as sessionActions from "../../store/session";
 import { useHistory } from "react-router-dom";
 
-function ProfileButton({ user }) {
+function ProfileButton({ user, showMenu, setShowMenu }) {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -33,9 +32,11 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu} style={{ border: "none", borderRadius: "0" }}>
-        <i className="fas fa-user-circle" />
-      </button>
+      {!showMenu ? (
+        <button onClick={openMenu} style={{ borderRadius: "0" }}>
+          <i className="fas fa-user-circle" />
+        </button>
+      ) : null}
       {showMenu && (
         <ul className="profile-dropdown">
           <li>{user.username}</li>

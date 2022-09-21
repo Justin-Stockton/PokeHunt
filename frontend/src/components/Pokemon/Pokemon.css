@@ -14,3 +14,9 @@
   padding-bottom: 1rem;
   display: flex;
 }
+
+.poke-img {
+  height: 100px;
+  width: 100px;
+  margin-left: 40px;
+}

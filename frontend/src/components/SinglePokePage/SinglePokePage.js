@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { thunkGetAllPokemons, thunkDeletePokemon } from "../../store/pokemon";
 import EditForm from "../EditForm";
 import Comments from "../Comments";
-
+import classes from "./SinglePokePage.module.css";
 function SinglePokePage() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -32,14 +32,7 @@ function SinglePokePage() {
   }
   if (!userObj) {
     return (
-      <div
-        style={{
-          display: "flex",
-          marginTop: "6%",
-          flexDirection: "column",
-          justifyContent: "center ",
-        }}
-      >
+      <div className={classes.main}>
         <h1
           style={{
             display: "flex",
@@ -73,8 +66,8 @@ function SinglePokePage() {
   }
   return (
     <>
-      <div>
-        <div style={{ marginTop: "10%" }}>
+      <div className={classes.main}>
+        <div>
           <h1
             style={{
               display: "flex",
@@ -86,15 +79,10 @@ function SinglePokePage() {
           </h1>
         </div>
         <div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
+          <div className={classes.imgContainer}>
             <img
               src={`${pokeArr.imgUrl}`}
-              style={{ width: "20%", height: "20%", borderRadius: "50%" }}
+              className={classes.img}
               alt="pokemon"
             />
           </div>

@@ -18,7 +18,7 @@
   position: fixed;
   z-index: 13;
   opacity: none;
-  max-height: 60%;
+
   width: 29%;
   background-color: #fff;
   border-radius: 12px;
@@ -26,6 +26,7 @@
   overflow: auto;
   min-width: 200px;
   overflow: hidden;
+  height: fit-content;
 }
 
 .top {

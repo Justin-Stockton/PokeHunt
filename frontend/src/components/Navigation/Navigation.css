@@ -1,7 +1,7 @@
 .big-div {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   background-color: black;
 
   height: 5rem;
@@ -9,6 +9,7 @@
   position: fixed;
   top: 0;
   width: 100%;
+  padding: 0 5%;
 }
 
 .big-div > * {
@@ -21,10 +22,6 @@
   align-items: center;
 }
 
-.big-div > div:hover {
-  background-color: #733ca9;
-  color: white;
-}
 #home {
   background-color: black;
   text-decoration: none;
@@ -35,10 +32,13 @@
   background-color: #231123;
   color: white;
 }
+
 .profile-dropdown {
   display: flex;
   flex-direction: column;
   width: fit-content;
+  justify-content: center;
+  align-items: center;
   background-color: #733ca9;
   color: white;
   margin: 0;
