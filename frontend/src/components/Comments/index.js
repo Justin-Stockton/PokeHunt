@@ -4,7 +4,8 @@ import {
   thunkDeleteReview,
   thunkCreateReview,
 } from "../../store/review";
-import { useParams, useHistory } from "react-router-dom";
+import { thunkGetAllUsers } from "../../store/user";
+import { useParams, useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 function Comments() {
@@ -17,8 +18,11 @@ function Comments() {
   const [review, setReview] = useState("");
   const [hidden, setHidden] = useState("none");
 
+  const loading = "...loadings";
+
   useEffect(() => {
     dispatch(thunkGetReviews(pokeId));
+    dispatch(thunkGetAllUsers());
   }, [dispatch, pokeId]);
 
   const reviewArr = useSelector((state) => {
@@ -27,6 +31,10 @@ function Comments() {
 
   const userObj = useSelector((state) => {
     return state.session.user;
+  });
+
+  const allUsersObj = useSelector((state) => {
+    return state.users;
   });
 
   const createReview = async (e) => {
@@ -45,6 +53,20 @@ function Comments() {
     await dispatch(thunkDeleteReview(reviewId));
     history.push(`/pokemon/${pokeId}`);
   };
+
+  if (!allUsersObj && !userObj && !reviewArr)
+    return (
+      <div
+        style={{
+          height: "100vh",
+          justifyContent: "center",
+          width: "100%",
+          alignItems: "center",
+        }}
+      >
+        LOADING
+      </div>
+    );
 
   return (
     <div style={{ marginTop: "5%" }}>
@@ -133,14 +155,33 @@ function Comments() {
                 }}
               >
                 <div className="poke-text">
-                  <div className="poke-text">
+                  <div style={{ overflowWrap: "break-word" }}>
                     {pokemonId === review.pokemonId ? (
-                      <div>
-                        {review.review}
+                      <div
+                        className="test"
+                        style={{
+                          border: "1px solid grey",
+                          padding: "1%",
+                          width: "30%",
+                          borderRadius: "20px",
+                          marginLeft: "35%",
+                          boxShadow: "10px 5px 5px grey",
+                        }}
+                      >
+                        <p>{review.review}</p>
+
+                        <div>
+                          <Link to={`/users/${review.userId}`}>
+                            -{" "}
+                            {allUsersObj[review.userId] &&
+                            allUsersObj[review.userId].username
+                              ? allUsersObj[review.userId].username
+                              : loading}
+                          </Link>
+                        </div>
                         <div>
                           {userObj.id === review.userId ? (
                             <div>
-                              {/* <button>Edit Your Review</button> */}
                               <div>
                                 <br />
                                 <button onClick={() => handleDelete(review.id)}>
