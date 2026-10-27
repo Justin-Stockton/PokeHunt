@@ -4,6 +4,23 @@ const asyncHandler = require("express-async-handler");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { Pokemon } = require("../../db/models");
+const { requireAuth } = require("../../utils/auth");
+
+async function ownedPokemon(req, _res, next) {
+  const pokemon = await Pokemon.findByPk(req.params.pokeId);
+  if (!pokemon) {
+    const err = new Error("Pokemon not found");
+    err.status = 404;
+    return next(err);
+  }
+  if (pokemon.userId !== req.user.id) {
+    const err = new Error("Forbidden");
+    err.status = 403;
+    return next(err);
+  }
+  req.pokemon = pokemon;
+  return next();
+}
 
 // ==== Mid Wares ==== //
 
@@ -30,11 +47,12 @@ const router = express.Router();
 
 router.post(
   "/",
+  requireAuth,
   validatePoke,
   asyncHandler(async (req, res) => {
-    const { userId, name, imgUrl, description } = req.body;
+    const { name, imgUrl, description } = req.body;
     const pokemon = await Pokemon.create({
-      userId,
+      userId: req.user.id,
       name,
       imgUrl,
       description,
@@ -89,11 +107,12 @@ router.get(
 
 router.put(
   "/:pokeId(\\d+)",
+  requireAuth,
+  asyncHandler(ownedPokemon),
   validatePoke,
   asyncHandler(async (req, res) => {
-    const { pokemonId, name, imgUrl, description } = req.body;
-
-    const pokemon = await Pokemon.findByPk(pokemonId);
+    const { name, imgUrl, description } = req.body;
+    const pokemon = req.pokemon;
 
     pokemon.name = name;
     pokemon.imgUrl = imgUrl;
@@ -111,13 +130,13 @@ router.put(
 
 router.post(
   "/:pokeId(\\d+)",
+  requireAuth,
+  asyncHandler(ownedPokemon),
   asyncHandler(async (req, res) => {
-    const pokemonId = parseInt(req.params.pokeId, 10);
-
-    const pokemon = await Pokemon.destroy({ where: { id: pokemonId } });
+    await req.pokemon.destroy();
 
     return res.json({
-      pokemon,
+      pokemon: 1,
     });
   })
 );

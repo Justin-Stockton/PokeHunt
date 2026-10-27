@@ -5,6 +5,8 @@ const pokemonRouter = require("./pokemon.js");
 const reviewRouter = require("./review");
 const upVoteRouter = require("./upvote");
 
+router.get("/health", (_req, res) => res.json({ status: "ok" }));
+
 router.use("/session", sessionRouter);
 
 router.use("/users", usersRouter);

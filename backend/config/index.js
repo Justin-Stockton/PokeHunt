@@ -6,6 +6,7 @@ module.exports = {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOST,
+    sslCa: process.env.DB_SSL_CA && process.env.DB_SSL_CA.replace(/\\n/g, "\n"),
   },
   jwtConfig: {
     secret: process.env.JWT_SECRET,

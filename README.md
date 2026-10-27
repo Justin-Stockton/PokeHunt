@@ -78,6 +78,35 @@ Setting Up and Starting a Local Server
 7. Run `npm start` in the `/frontend` directory
 8. The frontend server will be live on http://localhost:3000 by default
 
+## Private production verification
+
+Build the same multi-stage image on AMD64 or ARM64:
+
+```sh
+docker build --platform linux/arm64 -t pokehunt:verify .
+```
+
+The image runs as the unprivileged `node` user, listens on container port 5000,
+and checks `/api/health`. Do not publish that port on the host. Attach PokeHunt,
+PostgreSQL, and (later) `cloudflared` to a private Docker network and route the
+tunnel to `http://pokehunt:5000`.
+
+Production accepts either `DATABASE_URL` or the `DB_*` variables. Private-network
+PostgreSQL uses its private transport without pretending an unverifiable TLS
+certificate is secure. For a remote TLS database, set `DB_SSL_CA` to its trusted
+PEM CA; certificate verification remains enabled. Cloudflare terminates HTTPS,
+and the app trusts one proxy hop so production auth and CSRF cookies stay
+`Secure`, `HttpOnly` where applicable, and `SameSite=Lax`.
+
+The Sequelize 5 to 6 upgrade requires no schema migration. Run existing migrations
+before startup. Resettable demo data is unchanged and can still be restored with:
+
+```sh
+cd backend
+npx sequelize-cli db:seed:undo:all
+npx sequelize-cli db:seed:all
+```
+
 ## Bugs
 
 I love squishing bugs! If you find one, let me know by opening an issue [here](https://github.com/Justin-Stockton/PokeHunt/issues). Be sure to be clear in the description of the bug (i.e. what was input into the field that caused the bug, or where you were/ what you were doing at the time you spotted the bug). Screenshots or recordings greatly help to narrow down what the problem could be!

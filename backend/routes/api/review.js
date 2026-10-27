@@ -4,6 +4,23 @@ const asyncHandler = require("express-async-handler");
 // const { check } = require("express-validator");
 // const { handleValidationErrors } = require("../../utils/validation");
 const { Review } = require("../../db/models");
+const { requireAuth } = require("../../utils/auth");
+
+async function ownedReview(req, _res, next) {
+  const review = await Review.findByPk(req.params.reviewId);
+  if (!review) {
+    const err = new Error("Review not found");
+    err.status = 404;
+    return next(err);
+  }
+  if (review.userId !== req.user.id) {
+    const err = new Error("Forbidden");
+    err.status = 403;
+    return next(err);
+  }
+  req.review = review;
+  return next();
+}
 
 // ==== Mid Wares ==== //
 
@@ -17,12 +34,13 @@ const router = express.Router();
 
 router.post(
   "/",
+  requireAuth,
   //   validateReview,
   asyncHandler(async (req, res) => {
-    const { review, pokemonId, userId } = req.body;
+    const { review, pokemonId } = req.body;
 
     const createdReview = await Review.create({
-      userId,
+      userId: req.user.id,
       pokemonId,
       review,
     });
@@ -69,13 +87,13 @@ router.get(
 
 router.post(
   "/:reviewId(\\d+)",
+  requireAuth,
+  asyncHandler(ownedReview),
   asyncHandler(async (req, res) => {
-    const reviewId = parseInt(req.params.reviewId, 10);
-
-    const review = await Review.destroy({ where: { id: reviewId } });
+    await req.review.destroy();
 
     return res.json({
-      review,
+      review: 1,
     });
   })
 );

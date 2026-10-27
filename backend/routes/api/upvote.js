@@ -2,6 +2,7 @@ const express = require("express");
 const asyncHandler = require("express-async-handler");
 
 const { UpVote } = require("../../db/models");
+const { requireAuth } = require("../../utils/auth");
 
 const router = express.Router();
 
@@ -18,11 +19,12 @@ router.get(
 
 router.post(
   "/",
+  requireAuth,
   asyncHandler(async (req, res) => {
-    const { pokemonId, userId } = req.body;
+    const { pokemonId } = req.body;
 
     const addUpVote = await UpVote.create({
-      userId,
+      userId: req.user.id,
       pokemonId,
       UpVote: true,
     });
@@ -37,13 +39,14 @@ router.post(
 
 router.post(
   "/delete",
+  requireAuth,
   asyncHandler(async (req, res) => {
-    const { pokemonId, userId } = req.body;
+    const { pokemonId } = req.body;
 
     const removeUpVote = await UpVote.destroy({
       where: {
         pokemonId,
-        userId,
+        userId: req.user.id,
       },
     });
 

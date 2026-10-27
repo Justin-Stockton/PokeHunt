@@ -5,6 +5,7 @@ const { setTokenCookie, restoreUser } = require("../../utils/auth");
 const { User } = require("../../db/models");
 const { check } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
+const { loginLimiter } = require("../../utils/rateLimit");
 
 const router = express.Router();
 
@@ -22,6 +23,7 @@ const validateLogin = [
 // Log in
 router.post(
   "/",
+  loginLimiter,
   validateLogin,
   asyncHandler(async (req, res, next) => {
     const { credential, password } = req.body;

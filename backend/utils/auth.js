@@ -10,17 +10,18 @@ const setTokenCookie = (res, user) => {
   const token = jwt.sign(
     { data: user.toSafeObject() },
     secret,
-    { expiresIn: parseInt(expiresIn) } // 604,800 seconds = 1 week
+    { algorithm: "HS256", expiresIn: parseInt(expiresIn, 10) } // 604,800 seconds = 1 week
   );
 
-  const isProduction = process.env.NODE_ENV === "production";
+  const secureCookies =
+    process.env.NODE_ENV === "production" && process.env.COOKIE_SECURE !== "false";
 
   // Set the token cookie
   res.cookie("token", token, {
     maxAge: expiresIn * 1000, // maxAge in milliseconds
     httpOnly: true,
-    secure: isProduction,
-    sameSite: isProduction && "Lax",
+    secure: secureCookies,
+    sameSite: "lax",
   });
 
   return token;
@@ -30,7 +31,9 @@ const restoreUser = (req, res, next) => {
   // token parsed from cookies
   const { token } = req.cookies;
 
-  return jwt.verify(token, secret, null, async (err, jwtPayload) => {
+  if (!token) return next();
+
+  return jwt.verify(token, secret, { algorithms: ["HS256"] }, async (err, jwtPayload) => {
     if (err) {
       return next();
     }

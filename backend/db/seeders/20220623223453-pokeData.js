@@ -19,7 +19,7 @@ module.exports = {
           userId: 1,
           name: "Ashe's Pikachu",
           imgUrl:
-            "https://archives.bulbagarden.net/media/upload/thumb/archive/1/17/20170907183925%21025Pikachu-Original.png/120px-025Pikachu-Original.png",
+            "https://raw.githubusercontent.com/jnovack/pokemon-svg/3c3ea26da58331d7202e7cdb1aab9b8347d8587f/svg/25.svg",
           description:
             "He might not be the coolest Pokemon, but he is my best friend. I can't imagine becoming a pokemon master without him by my side!",
         },

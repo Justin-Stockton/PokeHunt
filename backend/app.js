@@ -8,9 +8,11 @@ const cookieParser = require("cookie-parser");
 const { environment } = require("./config");
 const routes = require("./routes");
 const isProduction = environment === "production";
+const secureCookies = isProduction && process.env.COOKIE_SECURE !== "false";
 const { ValidationError } = require("sequelize");
 
 const app = express();
+if (isProduction) app.set("trust proxy", 1);
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json());
@@ -32,8 +34,8 @@ app.use(
 app.use(
   csurf({
     cookie: {
-      secure: isProduction,
-      sameSite: isProduction && "Lax",
+      secure: secureCookies,
+      sameSite: "lax",
       httpOnly: true,
     },
   })
